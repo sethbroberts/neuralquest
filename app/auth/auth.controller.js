@@ -1,27 +1,47 @@
-angular.module('neuralquestApp')
-  .controller('AuthCtrl', function(Auth, $state) {
-    var authCtrl = this;
+/**
+ *
+ * Auth Controller
+ *
+ */
 
-    authCtrl.user = {
-      email: '',
-      password: ''
-    };
+(function(){
+  'use strict';
 
-    authCtrl.login = function() {
-      Auth.$authWithPassword(authCtrl.user).then(function(auth) {
-        //todo: change this
-        $state.go('temp');
-      }, function(error) {
-        authCtrl.error = error;
-      })
-    };
+  angular.module('neuralquestApp')
+    .controller('AuthCtrl', AuthCtrl);
 
-    authCtrl.register = function() {
-      Auth.$createUser(authCtrl.user).then(function(auth) {
-        authCtrl.login();
-      }, function(error) {
-        authCtrl.error = error;
-      })
-    };
+    function AuthCtrl(Auth, $state) {
+      var authCtrl = this;
 
-  });
+      authCtrl.user = {
+        email: '',
+        password: ''
+      };
+
+      authCtrl.login = login;
+      authCtrl.register = register;
+
+      
+
+      /*=============================================
+      =            METHOD IMPLEMENTATION            =
+      =============================================*/
+
+      function login() {
+        Auth.$authWithPassword(authCtrl.user).then(function(auth) {
+          //todo: change this
+          $state.go('temp');
+        }, function(error) {
+          authCtrl.error = error;
+        })
+      };
+
+      function register() {
+        Auth.$createUser(authCtrl.user).then(function(auth) {
+          authCtrl.login();
+        }, function(error) {
+          authCtrl.error = error;
+        })
+      };
+  };
+})();

@@ -1,14 +1,34 @@
-angular.module('neuralquestApp')
-  .controller('TempCtrl', function(Auth, $state) {
-    var tempCtrl = this;
+/**
+ *
+ * temp: may change the name later.
+ *
+ */
 
-    tempCtrl.logout = function(){
-      Auth.$unauth();
-      $state.go('home');
+(function(){
+  'use strict';
+  
+  angular.module('neuralquestApp')
+    .controller('TempCtrl', TempCtrl);
+
+    function TempCtrl(Auth, $state) {
+      var tempCtrl = this;
+      tempCtrl.logout = logout;
+      tempCtrl.setProfile = setProfile;
+
+      /*=============================================
+      =            METHOD IMPLEMENTATION            =
+      =============================================*/
+
+      function logout(){
+        Auth.$unauth();
+        $state.go('home');
+      };
+
+      function setProfile(){
+        $state.go('profile');
+      };
+      
     };
 
-    tempCtrl.setProfile = function(){
-      $state.go('profile');
-    };
-    
-  });
+})();
+
