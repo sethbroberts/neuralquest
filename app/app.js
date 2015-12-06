@@ -7,7 +7,7 @@
    * @name neuralquestApp
    * @description
    * # neuralquestApp
-   *
+   *test
    * Main module of the application.
    */
   angular
