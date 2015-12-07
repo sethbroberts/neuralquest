@@ -57,6 +57,15 @@ angular
             }
           }
         })
+        .state('landing', {
+          url: '/landing',
+          //controller: 'TempCtrl as tempCtrl',
+          templateUrl: 'users/user.landing.html'
+        })
+        .state('lesson', {
+          url: '/lesson',
+          templateUrl: 'lessons/lesson.template.html'
+        })
         .state('temp', {
           url: '/temp',
           controller: 'TempCtrl as tempCtrl',
