@@ -14,7 +14,7 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -28,9 +28,13 @@ module.exports = function(config) {
       'bower_components/angular-md5/angular-md5.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      'app/scripts/**/*.js',
-      'app/*.js',
+      // 'app/scripts/**/*.js',
       'test/mock/**/*.js',
+
+      //out app code
+      'app/*.js',
+
+      //spec files
       'test/spec/**/*.js'
     ],
 
@@ -50,18 +54,21 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+      'PhantomJS',
+      'Chrome'
     ],
 
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      // 'karma-jasmine'
+      'karma-mocha',
+      'karma-chai'
     ],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    singleRun: true,
 
     colors: true,
 

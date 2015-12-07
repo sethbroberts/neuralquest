@@ -22,7 +22,7 @@
       User.getGravatar = getGravatar;
       User.all = users;
       
-      return Users;
+      return User;
 
 
       /*=============================================
