@@ -9,6 +9,7 @@ angular
       $stateProvider
         .state('home', {
           url: '/',
+          controller: 'AuthCtrl as authCtrl',
           templateUrl: 'home/home.html'
         })
         .state('login', {

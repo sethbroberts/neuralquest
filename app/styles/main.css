@@ -1,5 +1,6 @@
 body {
   padding: 0;
+  padding-top: 70px;
 }
 
 .page-wrapper {
@@ -205,3 +206,9 @@ body {
   font-weight: normal;
   font-size:10px;
 }
+
+/*----------------------------------------------------------*/
+/*                       Style Classes                      */
+/*----------------------------------------------------------*/
+
+.top-buffer { margin-top:20px; }

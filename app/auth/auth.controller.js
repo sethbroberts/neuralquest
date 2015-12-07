@@ -14,6 +14,7 @@
       var authCtrl = this;
 
       authCtrl.user = {
+        fullname: '',
         email: '',
         password: ''
       };
@@ -38,6 +39,7 @@
 
       function register() {
         Auth.$createUser(authCtrl.user).then(function(auth) {
+          console.log('Registered in firebase!');
           authCtrl.login();
         }, function(error) {
           authCtrl.error = error;
