@@ -31,7 +31,7 @@
       function login() {
         Auth.$authWithPassword(authCtrl.user).then(function(auth) {
           //todo: change this
-          $state.go('temp');
+          $state.go('landing');
         }, function(error) {
           authCtrl.error = error;
         })
