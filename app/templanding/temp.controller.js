@@ -10,7 +10,7 @@
   angular.module('neuralquestApp')
     .controller('TempCtrl', TempCtrl);
 
-    function TempCtrl(Auth, $state) {
+    function TempCtrl(Auth, $state, Users) {
       var tempCtrl = this;
       tempCtrl.logout = logout;
       tempCtrl.setProfile = setProfile;
@@ -22,6 +22,7 @@
       function logout(){
         Auth.$unauth();
         $state.go('home');
+        Users.currentUser = '';
       };
 
       function setProfile(){
