@@ -76,7 +76,8 @@ angular
         })
         .state('lesson', {
           url: '/lesson',
-          templateUrl: 'lessons/lesson.template.html'
+          controller: 'LessonTemplateCtrl as lessonTemplateCtrl',
+          templateUrl: 'lessons/text.template.html'
         })
         .state('temp', {
           url: '/temp',
