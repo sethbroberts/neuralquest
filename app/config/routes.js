@@ -85,7 +85,7 @@ angular
           templateUrl: 'templanding/temp.html'
         })
         .state('mission', {
-          url: '/mission/:missionName/shuffles/:currentShuffle',
+          url: '/:stepName/:courseName/:currentShuffle',
           controller: 'MissionCtrl as missionCtrl',
           templateUrl: 'lessons/mission.template.html'
         })
