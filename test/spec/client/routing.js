@@ -1,6 +1,11 @@
+'use strict';
+
 describe('simple test', function () {
   it('should be true', function () {
-    expect(true).to.be.true;
+    function test(){
+      return true;
+    }
+    expect(test()).to.be.true;
   });
 });
 
