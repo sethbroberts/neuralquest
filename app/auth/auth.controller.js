@@ -10,7 +10,7 @@
   angular.module('neuralquestApp')
     .controller('AuthCtrl', AuthCtrl);
 
-    function AuthCtrl(Auth, $state) {
+    function AuthCtrl(Auth, $state, Users, $rootScope) {
       var authCtrl = this;
 
       authCtrl.user = {
@@ -21,7 +21,6 @@
 
       authCtrl.login = login;
       authCtrl.register = register;
-
       
 
       /*=============================================
@@ -31,7 +30,10 @@
       function login() {
         Auth.$authWithPassword(authCtrl.user).then(function(auth) {
           //todo: change this
+          console.log('logging in with user:',auth);
+          Users.currentUser = auth;
           $state.go('landing');
+          $rootScope.$broadcast('evt_userSigningIn');
         }, function(error) {
           authCtrl.error = error;
         })

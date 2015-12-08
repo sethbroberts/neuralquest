@@ -21,6 +21,7 @@
       User.getDisplayName = getDisplayName;
       User.getGravatar = getGravatar;
       User.all = users;
+      User.currentUser;
       
       return User;
 
