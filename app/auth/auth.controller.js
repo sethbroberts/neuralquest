@@ -33,7 +33,7 @@
           console.log('logging in with user:',auth);
           Users.currentUser = auth;
           $state.go('landing');
-          $rootScope.$broadcase('evt_userSiningIn');
+          $rootScope.$broadcast('evt_userSiningIn');
         }, function(error) {
           authCtrl.error = error;
         })

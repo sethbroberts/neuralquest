@@ -26,7 +26,7 @@
     }
 
     /* @ngInject */
-    function Controller($scope, Users, Auth) {
+    function Controller($scope, Users, Auth, $state) {
 
       $scope.isUsreSignedIn = isUsreSignedIn;
       $scope.logout = logout;
