@@ -59,8 +59,20 @@ angular
         })
         .state('landing', {
           url: '/landing',
-          //controller: 'TempCtrl as tempCtrl',
-          templateUrl: 'users/user.landing.html'
+          controller: 'LandingCtrl as landingCtrl',
+          templateUrl: 'users/landing.html',
+          resolve: {
+            auth: function($state, Users, Auth) {
+              return Auth.$requireAuth().catch(function() {
+                $state.go('home');
+              });
+            },
+            profile: function(Users, Auth) {
+              return Auth.$requireAuth().then(function(auth) {
+                return Users.getProfile(auth.uid).$loaded();
+              });
+            }
+          }
         })
         .state('lesson', {
           url: '/lesson',
