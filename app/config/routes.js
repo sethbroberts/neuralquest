@@ -11,6 +11,11 @@ angular
           url: '/',
           controller: 'AuthCtrl as authCtrl',
           templateUrl: 'home/home.html',
+          resolve: {
+            "currentAuth": ["Auth", function(Auth){
+              return Auth.$waitForAuth();
+            }]
+          }
         })
         .state('login', {
           url: '/login',
