@@ -84,6 +84,11 @@ angular
           controller: 'TempCtrl as tempCtrl',
           templateUrl: 'templanding/temp.html'
         })
+        .state('mission', {
+          url: '/mission',
+          controller: 'MissionCtrl as missionCtrl',
+          templateUrl: 'lessons/mission.template.html'
+        })
 
       $urlRouterProvider.otherwise('/');
     };
