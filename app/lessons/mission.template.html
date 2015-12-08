@@ -1,11 +1,31 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12" ng-repeat="shuffle in missionCtrl.shuffles">
-      <div class="shuffle-title">
-        <h3> {{ shuffle.title }} </h3>
-      </div>
-      <div class="shuffle-text">
-        <p> {{ shuffle.text }} </p>
+      <div ng-switch on="shuffle.type">
+        <div ng-switch-when="text" class="shuffle-title">
+          <h3> {{ shuffle.title }} </h3>
+        </div>
+        <div ng-switch-when="text" class="shuffle-text">
+          <p> Text {{ shuffle.text }} </p>
+        </div>
+        <div ng-switch-when="video" class="shuffle-title">
+          <h3> {{ shuffle.title }} </h3>
+        </div>
+        <div ng-switch-when="video" class="shuffle-text">
+          <p> Video {{ shuffle.text }} </p>
+        </div>
+        <div ng-switch-when="images" class="shuffle-title">
+          <h3> {{ shuffle.title }} </h3>
+        </div>
+        <div ng-switch-when="images" class="shuffle-text">
+          <p> image {{ shuffle.text }} </p>
+        </div>
+        <div ng-switch-when="code" class="shuffle-title">
+          <h3> {{ shuffle.title }} </h3>
+        </div>
+        <div ng-switch-when="code" class="shuffle-text">
+          <p> {{ shuffle.text }} </p>
+        </div>
       </div>
     </div>
   </div>
