@@ -28,7 +28,7 @@
     /* @ngInject */
     function Controller($scope, Users, Auth, $state) {
 
-      $scope.isUsreSignedIn = isUsreSignedIn;
+      $scope.isUserSignedIn = isUserSignedIn;
       $scope.logout = logout;
       $scope.$on('evt_userSiningIn', function(){
         // console.log('checking curerntUser after the event is triggered:',Users.currentUser);
@@ -39,7 +39,7 @@
       =            METHOD IMPLEMENTATION            =
       =============================================*/
       
-      function isUsreSignedIn() {
+      function isUserSignedIn() {
         // console.log('checking curerntUser in the directive:',Users.currentUser);
         if(Users.currentUser){
           return true;
