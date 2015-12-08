@@ -14,7 +14,8 @@
     .module('neuralquestApp', [
       'firebase',
       'angular-md5',
-      'ui.router'
+      'ui.router',
+      'ui.ace'
     ])
 
 })();
