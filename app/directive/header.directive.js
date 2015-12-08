@@ -5,8 +5,6 @@
         .module('neuralquestApp')
         .directive('appHeader', appHeader);
 
-    appHeader.$inject = ['Users'];
-
     /* @ngInject */
     function appHeader(Users) {
         // Usage: header directive. it will know if use is logged in or not and show the appropriate header at the top.
@@ -30,10 +28,11 @@
     }
 
     /* @ngInject */
-    function Controller($scope, Users) {
+    function Controller($scope, Users, Auth) {
       // $scope.currentUser = 
 
       $scope.isUsreSignedIn = isUsreSignedIn;
+      $scope.logout = logout;
       $scope.$on('evt_userSiningIn', function(){
         console.log('checking curerntUser after the event is triggered:',Users.currentUser);
         isUsreSignedIn();
@@ -50,7 +49,14 @@
         } else {
           return false;
         }
-      }
+      };
+
+      function logout(){
+        Auth.$unauth();
+        Users.currentUser = '';
+        $state.go('home');
+        
+      };
       
     }
 })();
