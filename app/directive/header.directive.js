@@ -30,7 +30,7 @@
 
       $scope.isUserSignedIn = isUserSignedIn;
       $scope.logout = logout;
-      $scope.$on('evt_userSiningIn', function(){
+      $scope.$on('evt_userSigningIn', function(){
         // console.log('checking curerntUser after the event is triggered:',Users.currentUser);
         isUsreSignedIn();
       })
