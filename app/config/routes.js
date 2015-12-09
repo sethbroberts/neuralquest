@@ -101,6 +101,18 @@ angular
             }
           }
         })
+        .state('accordion', {
+          url: '/accordion',
+          controller: 'AccordionCtrl as accordionCtrl',
+          templateUrl: 'lessons/accordion/accordion.html',
+          resolve: {
+            auth: function($state, Users, Auth) {
+              return Auth.$requireAuth().catch(function() {
+                $state.go('home');
+              });
+            }
+          }
+        })
 
       $urlRouterProvider.otherwise('/');
     };
