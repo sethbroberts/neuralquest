@@ -15,7 +15,8 @@
       'firebase',
       'angular-md5',
       'ui.router',
-      'ui.ace'
+      'ui.ace',
+      'ui.bootstrap'
     ])
 
 })();
