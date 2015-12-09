@@ -43,7 +43,7 @@
           var user = $firebaseObject(ref.child('users').child(authData.uid));
           user.$loaded().then(function() {
             //if the user does not exsit, create one.
-            if(user.name === undefined){
+            if(user.displayName === undefined){
               var newUser = {
                 /**
                   TODO:
@@ -51,16 +51,16 @@
                  */
               };
               if(authData.google){
-                newUser.name = authData.google.displayName;
+                newUser.displayName = authData.google.displayName;
               } else if(authData.facebook){
-                newUser.name = authData.facebook.displayName;
+                newUser.displayName = authData.facebook.displayName;
               } else {
-                newUser.name = authCtrl.user.fullname;
+                newUser.displayName = authCtrl.user.fullname;
               }
 
               user.$ref().set(newUser);
             }
-          })         
+          })
         } else {
           console.log('user is not signed in.')
         }
