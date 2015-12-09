@@ -89,6 +89,18 @@ angular
           controller: 'MissionCtrl as missionCtrl',
           templateUrl: 'lessons/mission.template.html'
         })
+        .state('build', {
+          url: '/build',
+          controller: 'BuildCtrl as buildCtrl',
+          templateUrl: 'build/build.html',
+          resolve: {
+            auth: function($state, Users, Auth) {
+              return Auth.$requireAuth().catch(function() {
+                $state.go('home');
+              });
+            }
+          }
+        })
 
       $urlRouterProvider.otherwise('/');
     };
