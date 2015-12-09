@@ -2,29 +2,25 @@
   <div class="row">
     <div class="col-md-12" ng-repeat="shuffle in missionCtrl.shuffles">
       <div ng-switch on="shuffle.type">
-        <div ng-switch-when="text" class="shuffle-title">
-          <h3> {{ shuffle.title }} </h3>
-        </div>
         <div ng-switch-when="text" class="shuffle-text">
+          <h3> {{ shuffle.title }} </h3>
           <p> Text {{ shuffle.text }} </p>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( shuffle.sequence )">Continue</button>
         </div>
-        <div ng-switch-when="video" class="shuffle-title">
+        <div ng-switch-when="video" class="shuffle-video">
           <h3> {{ shuffle.title }} </h3>
-        </div>
-        <div ng-switch-when="video" class="shuffle-text">
           <p> Video {{ shuffle.text }} </p>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( shuffle.sequence )">Continue</button>
         </div>
-        <div ng-switch-when="images" class="shuffle-title">
+        <div ng-switch-when="images" class="shuffle-images">
           <h3> {{ shuffle.title }} </h3>
-        </div>
-        <div ng-switch-when="images" class="shuffle-text">
           <p> image {{ shuffle.text }} </p>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( shuffle.sequence )">Continue</button>
         </div>
-        <div ng-switch-when="code" class="shuffle-title">
+        <div ng-switch-when="code" class="shuffle-code">
           <h3> {{ shuffle.title }} </h3>
-        </div>
-        <div ng-switch-when="code" class="shuffle-text">
           <p> {{ shuffle.text }} </p>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( shuffle.sequence )">Continue</button>
         </div>
       </div>
     </div>
