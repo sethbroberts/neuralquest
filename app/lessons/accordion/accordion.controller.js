@@ -28,7 +28,22 @@
       accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
       console.log(Auth.$getAuth());
       console.log(Users.getProfile(Auth.$getAuth().uid));
-      accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid)
+      accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid);
+      // MY EDITS
+      accordionCtrl.currentUser.$loaded().then(function() {
+        var currSeq = accordionCtrl.currentUser.currentSequence;
+        var ref = new Firebase(FirebaseUrl + '/NNFlat');
+        ref.orderByChild('sequence')
+          .equalTo(currSeq)
+          .limitToFirst(1)
+          .on('value', function(snapshot) {
+            var data = snapshot.val();
+
+            accordionCtrl.currentUser.currentLesson = data[currSeq].course;
+
+          });
+      });
+      // END OF MY EDITS
     }
 
     function openFirstOne(index) {

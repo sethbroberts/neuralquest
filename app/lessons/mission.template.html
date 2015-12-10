@@ -55,8 +55,16 @@
 
         <div ng-switch-when="list" class="element-list">
           <ul>{{ element.content }}</ul>
+            <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
         </div>
 
+        <div ng-switch-when="question" class="element-question">
+          <p> Question: {{ element.promptText }} </p>
+          <p> Answers: {{ element.answerText }} </p>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
