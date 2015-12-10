@@ -85,7 +85,7 @@ angular
           templateUrl: 'templanding/temp.html'
         })
         .state('mission', {
-          url: '/:stepName/:courseName/:currentShuffle',
+          url: '/:trackName/:stepName/:courseName/',
           controller: 'MissionCtrl as missionCtrl',
           templateUrl: 'lessons/mission.template.html'
         })
@@ -112,6 +112,11 @@ angular
               });
             }
           }
+        })
+        .state('lesson2', {
+          url: '/lesson2',
+          controller: 'LessonTemplateCtrl as lessonTemplateCtrl',
+          templateUrl: 'lessons/lesson.template.html'
         })
 
       $urlRouterProvider.otherwise('/');
