@@ -15,7 +15,6 @@
     accordionCtrl.init = init;
     accordionCtrl.init();
     accordionCtrl.isNotString = isNotString;
-    accordionCtrl.firstIndex = firstIndex;
     accordionCtrl.openFirstOne = openFirstOne;
 
     /*======================================
@@ -23,10 +22,6 @@
     ======================================*/
 
     function init() {
-      getLessons('Track');
-    }
-
-    function firstIndex(index) {
       getLessons();
     }
 
@@ -39,15 +34,14 @@
       }
     }
 
-    function getLessons(lesson) {
+    function getLessons() {
       var ref = new Firebase(FirebaseUrl);
-      accordionCtrl.track = $firebaseObject(ref.child(lesson));
+      accordionCtrl.lessons = $firebaseObject(ref.child('NeuralNetwork'));
     }
 
     function isNotString(val) {
       // console.log('val', val);
       if(typeof val === "string"){
-        console.log('is string', val);
         // console.log('is string', val);
         return false;
       } else {
