@@ -13,17 +13,25 @@
   function MissionCtrl ($firebaseArray, FirebaseUrl, $stateParams) {
     var missionCtrl = this;
     // TODO: this needs to be dynamically built based on click/state from prior page
+    var track = $stateParams.trackName;
+    var stepName = $stateParams.stepName;
     var courseName = $stateParams.courseName;
-    var resetThisVarName = 'NeuralNetwork/beginner/';
-    var ref = new Firebase(FirebaseUrl + resetThisVarName + courseName);
+    var ref = new Firebase(FirebaseUrl + '/' + track + '/' + stepName + '/' + courseName);
     var authData = ref.getAuth();
 
     missionCtrl.shuffles = $firebaseArray(ref);
+    console.log(missionCtrl.shuffles)
 
-    missionCtrl.shuffles.$loaded()
-      .then(function() {
-        console.log(missionCtrl.shuffles);
-      });
+    // ref.orderByChild('sequence').on('value', function(snapshot) {
+    //   console.log(snapshot.val())
+    //   missionCtrl.shuffles = snapshot.val();
+    // });
+
+
+    // missionCtrl.shuffles.$loaded()
+    //   .then(function() {
+    //     console.log(missionCtrl.shuffles);
+    //   });
 
     missionCtrl.saveShuffle = saveShuffle;
 
