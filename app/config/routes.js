@@ -77,17 +77,34 @@ angular
         .state('lesson', {
           url: '/lesson',
           controller: 'LessonTemplateCtrl as lessonTemplateCtrl',
-          templateUrl: 'lessons/text.template.html'
+          templateUrl: 'lessons/text.template.html',
+          resolve: {
+            auth: function($state, Users, Auth) {
+              return Auth.$requireAuth().catch(function() {
+                $state.go('home');
+              });
+            }
+          }
         })
         .state('temp', {
           url: '/temp',
           controller: 'TempCtrl as tempCtrl',
-          templateUrl: 'templanding/temp.html'
+          templateUrl: 'templanding/temp.html',
         })
         .state('mission', {
           url: '/mission',
           controller: 'MissionCtrl as missionCtrl',
-          templateUrl: 'lessons/mission.template.html'
+          templateUrl: 'lessons/mission.template.html',
+          resolve: {
+            auth: function($state, Users, Auth) {
+              return Auth.$requireAuth().catch(function() {
+                $state.go('home');
+              });
+            },
+            missionData: function(Missions) {
+              return Missions.getShuffleData('Perceptron use');
+            }
+          }
         })
         // .state('mission', {
         //   url: '/:trackName/:stepName/:courseName/',
