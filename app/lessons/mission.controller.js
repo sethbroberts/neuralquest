@@ -10,7 +10,7 @@
   angular.module('neuralquestApp')
     .controller('MissionCtrl', MissionCtrl);
 
-  function MissionCtrl ($firebaseArray, FirebaseUrl, $stateParams, $firebaseObject, Missions, missionData) {
+  function MissionCtrl ($firebaseArray, FirebaseUrl, $stateParams, $firebaseObject, Missions, missionData, $scope) {
     var missionCtrl = this;
     // TODO: this needs to be dynamically built based on click/state from prior page
     var track = $stateParams.trackName;
@@ -25,6 +25,7 @@
 
     missionCtrl.processSnapshot = processSnapshot;
     missionCtrl.saveShuffle = saveShuffle;
+    getSequence();
 
     // Missions.getShuffleData(targetShuffle, processSnapshot);
 
@@ -45,6 +46,14 @@
         missionCtrl.title = missionCtrl.elements[elem].shuffle;
         break;
       }
+    };
+
+    function getSequence (){
+      var refRead = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
+      refRead.orderByChild('currentSequence').on('value', function(snapshot){
+       $scope.currentSequence = snapshot.val().currentSequence
+       console.log("$scope", $scope.currentSequence)
+      })
     };
 
   };
