@@ -35,6 +35,7 @@
 
     function saveShuffle (data) {
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
+      data = data + 10;
       refWrite.update({ currentSequence: data });
     };
 
@@ -52,6 +53,7 @@
       var refRead = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
       refRead.orderByChild('currentSequence').on('value', function(snapshot){
        $scope.currentSequence = snapshot.val().currentSequence
+
        console.log("$scope", $scope.currentSequence)
       })
     };

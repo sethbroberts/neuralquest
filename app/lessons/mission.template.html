@@ -14,22 +14,27 @@
         <div ng-switch-when="text" class="element-text">
           <h3> {{ element.title }} </h3>
           <div ng-bind-html="element.content"></div>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="image" class="element-images">
           <img style="width: 500px; height: 300px; display: block" ng-src=" {{element.url}} " />
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="video" class="element-video">
           <p> {{ element.mediaUrl }} (will be iFrame) </p>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="code" class="element-code">
           <pre> {{ element.content }} </pre>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="code" class="element-code">
           <ul>{{ element.content }}</ul>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="question" class="element-question">
