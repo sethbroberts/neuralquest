@@ -50,6 +50,7 @@
                   TODO:
                   - may add additional properties here later.
                  */
+                 currentSequence: 10
               };
               if(authData.google){
                 newUser.displayName = authData.google.displayName;
