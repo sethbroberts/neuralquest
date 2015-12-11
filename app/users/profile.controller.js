@@ -15,12 +15,14 @@
 
       profileCtrl.profile = profile;
       profileCtrl.updateProfile = updateProfile;
+
       if (auth.google) {
         profileCtrl.profile.displayName = auth.google.displayName;
       }
       if (auth.facebook) {
         profileCtrl.profile.displayName = auth.facebook.displayName;
       }
+
       /*=============================================
       =            METHOD IMPLEMENTATION            =
       =============================================*/
