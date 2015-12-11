@@ -25,24 +25,29 @@
         }
     }
 
-    function Controller($rootScope, $scope, Users, Auth, $state) {
+    function Controller($rootScope, $scope, Users, Auth, $state, $timeout) {
 
       $scope.isUserSignedIn = isUserSignedIn;
       $scope.logout = logout;
       $scope.loginToggle = loginToggle;
       $scope.getLoginToggle = getLoginToggle;
-      $scope.$on('evt_userSigningIn', function(){
+      $scope.goProfilePage = goProfilePage;
+      $scope.$on('evt_userSigningIn', function(){ //auth.controller
         // console.log('checking curerntUser after the event is triggered:',Users.currentUser);
         isUserSignedIn();
       });
+      $scope.signInUser = {};
+      
+      // $scope.reload = reload;
 
+      init();
       /*=============================================
       =            METHOD IMPLEMENTATION            =
       =============================================*/
       
       function isUserSignedIn() {
         // console.log('checking curerntUser in the directive:',Users.currentUser);
-        
+
         //check if the current user is logged in
         if(Auth.$getAuth()){
           return true;
@@ -50,6 +55,37 @@
           return false;
         }
       };
+
+      function init() {
+        if(Auth.$getAuth()){
+          // console.log('authdata---------',Auth.$getAuth());
+          if(Auth.$getAuth().password){
+            $scope.signInUser.displayName = Auth.$getAuth().password.email;
+            $scope.signInUser.profileImgaeURL = Auth.$getAuth().password.profileImageURL;
+            console.log('user------------', $scope.signInUser);
+          }
+          if(Auth.$getAuth().google){
+            $scope.signInUser.displayName = Auth.$getAuth().google.displayName;
+            $scope.signInUser.profileImgaeURL = Auth.$getAuth().google.profileImageURL;
+            console.log('user------------', $scope.signInUser);
+          }
+          if(Auth.$getAuth().facebook){
+            $scope.signInUser.displayName = Auth.$getAuth().facebook.displayName;
+            $scope.signInUser.profileImgaeURL = Auth.$getAuth().facebook.profileImageURL;
+            console.log('user------------', $scope.signInUser);
+          }
+        }
+      }
+
+      function setSignedInUser(provider){
+        
+      }
+
+      function goProfilePage() {
+        $timeout(function(){
+          $state.go('profile');  
+        }, 50);
+      }
 
       function logout(){
         Auth.$unauth();

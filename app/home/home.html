@@ -26,6 +26,7 @@
           <form ng-submit="authCtrl.register()">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Full Name" ng-model="authCtrl.user.fullname">
+              {{authCtrl.user.fullname}}
             </div>
             <div class="form-group">
               <input type="email" class="form-control" placeholder="Email" ng-model="authCtrl.user.email">

@@ -23,6 +23,7 @@
       authCtrl.register = register;
       authCtrl.loginWithFacebook = loginWithFacebook;
       authCtrl.loginWithGoogle = loginWithGoogle;
+      authCtrl.loginBtnToggle = loginBtnToggle;
       authCtrl.init = init;
 
       authCtrl.init();
@@ -52,10 +53,16 @@
               };
               if(authData.google){
                 newUser.displayName = authData.google.displayName;
-              } else if(authData.facebook){
+                newUser.profileImageURL = authData.google.profileImageURL;
+              }
+              if(authData.facebook){
                 newUser.displayName = authData.facebook.displayName;
-              } else {
+                newUser.profileImageURL = authData.facebook.profileImageURL;
+              } 
+              if(authData.password) {
                 newUser.displayName = authCtrl.user.fullname;
+                newUser.emailAddress = authCtrl.user.email;
+                newUser.profileImageURL = 'http://www.gravatar.com/avatar/';
               }
 
               user.$ref().set(newUser);
@@ -103,6 +110,10 @@
           $rootScope.$broadcast('evt_userSigningIn');
           $state.go('accordion');  
         }); 
+      };
+
+      function loginBtnToggle() {
+        $rootScope.loginToggle = !$rootScope.loginToggle;
       };
 
   };

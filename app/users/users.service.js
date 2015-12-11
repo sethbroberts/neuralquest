@@ -12,7 +12,7 @@
     .factory('Users', Users);
 
 
-    function Users($firebaseArray, $firebaseObject, FirebaseUrl){
+    function Users($firebaseArray, $firebaseObject, FirebaseUrl, $location){
       var usersRef = new Firebase(FirebaseUrl+'users');
       var users = $firebaseArray(usersRef);
 
@@ -31,9 +31,10 @@
       =============================================*/
       
       function getProfile(uid) {
-          return $firebaseObject(usersRef.child(uid));
+        return $firebaseObject(usersRef.child(uid));
       }
       function getDisplayName(uid) {
+
         return users.$getRecord(uid).displayName;
       }
       function getGravatar(uid) {

@@ -6,7 +6,7 @@
     .controller('AccordionCtrl', AccordionCtrl);
 
   
-  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray) {
+  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData) {
     var accordionCtrl = this;
     var getLessons = getLessons;
 
@@ -15,7 +15,6 @@
     accordionCtrl.init = init;
     accordionCtrl.init();
     accordionCtrl.isNotString = isNotString;
-    accordionCtrl.firstIndex = firstIndex;
     accordionCtrl.openFirstOne = openFirstOne;
 
     /*======================================
@@ -23,11 +22,10 @@
     ======================================*/
 
     function init() {
-      getLessons('Track');
-    }
-
-    function firstIndex(index) {
-      getLessons();
+      accordionCtrl.allEl = accordionData;
+      // console.log(accordionData);
+      // console.log('accordion',accordionCtrl.allEl);
+      accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
     }
 
     function openFirstOne(index) {
@@ -39,21 +37,49 @@
       }
     }
 
-    function getLessons(lesson) {
-      var ref = new Firebase(FirebaseUrl);
-      accordionCtrl.track = $firebaseObject(ref.child(lesson));
+    //get a list of step, course or shuffle.
+    function getComponent(allElements, targetKey){ 
+      var result = {};
+      for(var key in allElements){
+        if(!allElements[key][targetKey]){
+          result[allElements[key][targetKey]] = true;
+        }
+      }
+      console.log("result,",result);
+      return result;
+    }
+
+    function makeLocalObject(allElements) {
+      var result = {}
+      for(var numberKey in allElements) {
+        var element = allElements[numberKey];
+        var step = element['step'];
+        var course = element['course'];
+        var shuffle = element['shuffle'];
+        
+        if(!result[step]) {
+          result[step] = {}
+        }
+        if(!result[step][course]) {
+          result[step][course] = {}
+        }
+        if(!result[step][course][shuffle]) {
+          result[step][course][shuffle] = {}
+        }
+        result[step][course][shuffle][element] = true; 
+        
+      }
+      // console.log("result from makeLocalObject,",result);
+      return result;
     }
 
     function isNotString(val) {
-      // console.log('val', val);
       if(typeof val === "string"){
         console.log('is string', val);
-        // console.log('is string', val);
         return false;
       } else {
         return true;
       }
     }
-
   }
 })();

@@ -57,6 +57,7 @@ angular
             },
             profile: function(Users, Auth) {
               return Auth.$requireAuth().then(function(auth) {
+                console.log("you hit profile state!")
                 return Users.getProfile(auth.uid).$loaded();
               });
             }
@@ -137,6 +138,9 @@ angular
               return Auth.$requireAuth().catch(function() {
                 $state.go('home');
               });
+            },
+            accordionData: function(AccordionService) {
+              return AccordionService.getLessons();
             }
           }
         })

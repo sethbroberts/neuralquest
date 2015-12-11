@@ -28,10 +28,20 @@
       =============================================*/
 
       function updateProfile() {
-        profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
-        profileCtrl.profile.$save();
-        //todo: change this
-        $state.go('temp');
+        if(auth.google){
+          profileCtrl.profile.$save();
+          $state.go('accordion');
+        }
+        if(auth.facebook){
+          profileCtrl.profile.$save();
+          $state.go('accordion');
+        }
+        if(auth.password){
+          profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
+          profileCtrl.profile.$save();
+          //todo: change this
+          $state.go('accordion');
+        }
       }
     }
 
