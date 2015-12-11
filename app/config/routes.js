@@ -85,10 +85,15 @@ angular
           templateUrl: 'templanding/temp.html'
         })
         .state('mission', {
-          url: '/:trackName/:stepName/:courseName/',
+          url: '/mission',
           controller: 'MissionCtrl as missionCtrl',
           templateUrl: 'lessons/mission.template.html'
         })
+        // .state('mission', {
+        //   url: '/:trackName/:stepName/:courseName/',
+        //   controller: 'MissionCtrl as missionCtrl',
+        //   templateUrl: 'lessons/mission.template.html'
+        // })
         .state('build', {
           url: '/build',
           controller: 'BuildCtrl as buildCtrl',
