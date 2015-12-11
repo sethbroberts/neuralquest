@@ -138,6 +138,9 @@ angular
               return Auth.$requireAuth().catch(function() {
                 $state.go('home');
               });
+            },
+            accordionData: function(AccordionService) {
+              return AccordionService.getLessons();
             }
           }
         })

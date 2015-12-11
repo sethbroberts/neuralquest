@@ -22,7 +22,7 @@
     ======================================*/
 
     function init() {
-      getLessons();
+      getLessons('NNFlat');
     }
 
     function openFirstOne(index) {
@@ -34,14 +34,30 @@
       }
     }
 
-    function getLessons() {
+    function getLessons(lessonData) {
       var ref = new Firebase(FirebaseUrl);
-      accordionCtrl.lessons = $firebaseObject(ref.child('NeuralNetwork'));
+      accordionCtrl.track = $firebaseArray(ref.child(lessonData));
+      //
+      // accordionCtrl.steps = getSteps(accordionCtrl.track);
+      // accordionCtrl.courses = getCourses(accordionCtrl.steps);
+    }
+
+    function getStep(steps){
+      var steps = [];
+      //process steps data to only filter steps I need.
+      return stesp;
+    }
+
+    function getCourses(courses){
+      var courses = [];
+      //process sources data to only filter steps I need.
+      return courses;
     }
 
     function isNotString(val) {
       // console.log('val', val);
       if(typeof val === "string"){
+        console.log('is string', val);
         // console.log('is string', val);
         return false;
       } else {

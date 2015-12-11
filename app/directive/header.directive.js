@@ -58,7 +58,7 @@
 
       function init() {
         if(Auth.$getAuth()){
-          console.log('authdata---------',Auth.$getAuth());
+          // console.log('authdata---------',Auth.$getAuth());
           if(Auth.$getAuth().password){
             $scope.signInUser.displayName = Auth.$getAuth().password.email;
             $scope.signInUser.profileImgaeURL = Auth.$getAuth().password.profileImageURL;
