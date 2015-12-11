@@ -22,7 +22,7 @@
 
     elementControl.elements.$loaded()
       .then(function() {
-        console.log(elementControl.elements);
+        //console.log(elementControl.elements);
       });
 
     // elementControl.saveShuffle = saveShuffle;
