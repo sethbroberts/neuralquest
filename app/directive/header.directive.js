@@ -82,7 +82,9 @@
       }
 
       function goProfilePage() {
-        $state.go('profile');
+        $timeout(function(){
+          $state.go('profile');  
+        }, 50);
       }
 
       function logout(){
