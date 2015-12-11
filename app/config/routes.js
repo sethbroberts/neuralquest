@@ -57,6 +57,7 @@ angular
             },
             profile: function(Users, Auth) {
               return Auth.$requireAuth().then(function(auth) {
+                console.log("hit here!!!!!!!!")
                 return Users.getProfile(auth.uid).$loaded();
               });
             }

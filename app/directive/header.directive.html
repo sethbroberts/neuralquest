@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a ui-sref="build">Build </a>
+            <a ui-sref="build" class="buildbutton">Build </a>
           </li>
           <li>
             <a ui-sref="login" ng-hide="getLoginToggle()" ng-click="loginToggle()">Log In</a>
@@ -31,13 +31,33 @@
       <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#/build">Build</a>
+            <a ui-sref="build" class="buildbutton">Build</a>
           </li>
           <li>
-            <a href="#" ng-click="logout();">Logout</a>
+            <img class="profileImage" src="{{signInUser.profileImgaeURL}}" alt="{{signInUser.displayName}}">
+          </li>
+          <li>
+            <div class="btn-group profileName" uib-dropdown>
+              <a href="#" aria-labelledby="split-button" uib-dropdown-toggle>{{signInUser.displayName}}</a>
+              <!-- <button id="split-button" type="button" class="btn btn-danger">{{signInUser.displayName}}</button> -->
+              <!-- <button type="button" class="btn btn-danger" uib-dropdown-toggle>
+                <span class="caret"></span>
+                <span class="sr-only">Split button!</span>
+              </button> -->
+              <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+                <li role="menuitem"><a href="#" ng-click="goProfilePage();">Profile</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#" ng-click="logout();">Logout</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
     </nav>
   </div>
 </div>
+
+
+
+
+

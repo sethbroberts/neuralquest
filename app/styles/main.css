@@ -253,6 +253,25 @@ body {
 .accordion {
   padding-bottom: 5px;
 }
+
+.profileImage {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  margin-top: 5px;
+}
+.buildbutton {
+  margin-right: 30px;
+  font-size: 1.0em;
+}
+
+.profileName {
+  margin-left: 5px;
+  margin-top: 17px;
+  margin-right: 20px;
+  font-size: 1em;
+
+}
 /*----------------------------------------------------------*/
 /*                       Style Classes                      */
 /*----------------------------------------------------------*/

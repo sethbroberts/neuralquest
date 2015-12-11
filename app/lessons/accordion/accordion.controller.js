@@ -15,7 +15,6 @@
     accordionCtrl.init = init;
     accordionCtrl.init();
     accordionCtrl.isNotString = isNotString;
-    accordionCtrl.firstIndex = firstIndex;
     accordionCtrl.openFirstOne = openFirstOne;
 
     /*======================================
@@ -24,10 +23,6 @@
 
     function init() {
       getLessons('Track');
-    }
-
-    function firstIndex(index) {
-      getLessons();
     }
 
     function openFirstOne(index) {
