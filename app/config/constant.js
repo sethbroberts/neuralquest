@@ -3,7 +3,7 @@
 
   angular
       .module('neuralquestApp')
-      .constant('FirebaseUrl', 'https://neuralquest2.firebaseio.com/');
+      .constant('FirebaseUrl', 'https://neuralquest.firebaseio.com/');
 })();
 
 
