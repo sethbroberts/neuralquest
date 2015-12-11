@@ -45,14 +45,14 @@
         </div>
 
         <div ng-switch-when="code-editor" class="element-code-editor">
-          <div ng-model="missionCtrl.aceContent" ui-ace="{
+          <div ng-model="element.prompt" ui-ace="{
                         useWrapMode : true,
                         showGutter: true,
                         theme:'monokai',
                         mode: 'javascript',
                         firstLineNumber: 1,
                         advanced: {
-                            fontSize: 44
+                            fontSize: 25
                           }
                        }"></div>
           <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>

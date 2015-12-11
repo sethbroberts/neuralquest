@@ -19,7 +19,7 @@
     var ref = new Firebase(FirebaseUrl + '/NNFlat');
     var authData = ref.getAuth();
     var targetShuffle = 'Perceptron use';
-    missionCtrl.aceContent = "function test(input) {\n  console.log(input)\n};";
+    missionCtrl.aceContent = "function test(input) {\n  console.log(input);\n}";
 
     processSnapshot(missionData);
 
