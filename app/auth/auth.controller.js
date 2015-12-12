@@ -10,7 +10,7 @@
   angular.module('neuralquestApp')
     .controller('AuthCtrl', AuthCtrl);
 
-    function AuthCtrl(Auth, $state, Users, $rootScope, $firebaseAuth, FirebaseUrl, $firebaseObject) {
+    function AuthCtrl(Auth, $state, Users, $rootScope, $timeout, $firebaseAuth, FirebaseUrl, $firebaseObject) {
       var authCtrl = this;
 
       authCtrl.user = {
@@ -25,6 +25,7 @@
       authCtrl.loginWithGoogle = loginWithGoogle;
       authCtrl.loginBtnToggle = loginBtnToggle;
       authCtrl.init = init;
+      authCtrl.resetPwd = resetPwd;
 
       authCtrl.init();
       /*=============================================
@@ -94,6 +95,25 @@
           authCtrl.error = error;
         })
       };
+
+      function resetPwd() {
+        var ref = new Firebase(FirebaseUrl);
+        ref.resetPassword({
+          email: authCtrl.user.email
+        }, function(err) {
+          if(!err){
+            console.log("password reset email sent successfully");
+            alert("an email has been sent to "+authCtrl.user.email+". \n You will be directed to the sign in page");
+            $timeout(function(){
+              $state.go('home');
+              loginBtnToggle();
+            },3000);
+          } else {
+            console.log("Error sending password reset email:", err);
+            alert("You can't find the user in our DB. \n Please try again!");
+          }
+        });
+      }
 
       function loginWithFacebook() {
         Auth.OAuthLogin('facebook').then(function (authData){

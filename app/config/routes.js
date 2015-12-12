@@ -144,6 +144,10 @@ angular
             }
           }
         })
+        .state('resetPwd', {
+          templateUrl: 'auth/resetPwd.html',
+          controller: 'AuthCtrl as authCtrl'
+        })
         .state('lesson2', {
           url: '/lesson2',
           controller: 'LessonTemplateCtrl as lessonTemplateCtrl',
