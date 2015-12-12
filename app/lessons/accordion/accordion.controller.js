@@ -6,7 +6,7 @@
     .controller('AccordionCtrl', AccordionCtrl);
 
   
-  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData) {
+  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData, Users, Auth) {
     var accordionCtrl = this;
     var getLessons = getLessons;
 
@@ -26,6 +26,9 @@
       // console.log(accordionData);
       // console.log('accordion',accordionCtrl.allEl);
       accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
+      console.log(Auth.$getAuth());
+      console.log(Users.getProfile(Auth.$getAuth().uid));
+      accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid)
     }
 
     function openFirstOne(index) {

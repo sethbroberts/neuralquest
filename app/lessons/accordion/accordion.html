@@ -4,23 +4,40 @@
 
   <!-- main content -->
   <div class="container">
+
     <div class="row">
+      <h2 class="text-center">
+          Welcome<span>, {{accordionCtrl.currentUser.displayName}}</span>
+      </h2>
+      <div class="col-md-4 col-sm-3 col-xs-1">
+      </div>
+      <div class="col-md-4 col-sm-6 col-xs-10">
+        <h3 class="text-center">
+          Your current lesson is {{accordionCtrl.currentUser.currentLesson}}
+        </h3>
+        <button ui-sref="lesson" type="button" class="btn btn-default btn-block">
+          Continue
+        </button>
+      </div>
+      <div class="col-md-4 col-sm-3 col-xs-1">
+      </div>
+    </div>
+
+    <div class="row">
+      <br />
+      <p class="text-center">or choose a specific lesson from below.</p>
       <h2 class="text-center">Lesson</h2>
-      <h3 class="text-center">{{accordionCtrl.track.title}}</h3>
+      <h3 class="text-center">Neural Network</h3>
       <br/>
     </div>
     <div class="col-md-1 col-sm-1"></div>
     <div class="col-md-10 col-sm-10">
 
-    <!-- {{accordionCtrl.suffle}} -->
-    <!-- {{accordionCtrl.lesson}} -->
-    <!-- {{accordionCtrl.steps}} -->
-    <!-- {{accordionCtrl.track}} -->
 
     <div class="accordionContainer" ng-repeat="(step, courses) in accordionCtrl.track">
       <div class="accordionStepBox">
         <h4 class="accordionStepTitle">Step {{$index+1}}: {{step}}</h4>
-        <span>Summary: {{step.summary}}</span>
+        <!-- <span>Summary: {{step.summary}}</span> -->
       </div>
       <div class="accordionCoursesBox">
         <div class="accordionCoursesText">Available Courses</div>
