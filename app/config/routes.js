@@ -14,7 +14,14 @@ angular
           resolve: {
             "currentAuth": ["Auth", function(Auth){
               return Auth.$waitForAuth();
-            }]
+            }],
+            requireNoAuth: function($state, Auth) {
+              return Auth.$requireAuth().then(function(auth) {
+                $state.go('accordion');
+              }, function(error) {
+                return;
+              })
+            }
           }
         })
         .state('login', {
@@ -24,7 +31,7 @@ angular
           resolve: {
             requireNoAuth: function($state, Auth) {
               return Auth.$requireAuth().then(function(auth) {
-                $state.go('home');
+                $state.go('accordion');
               }, function(error) {
                 return;
               })
@@ -154,6 +161,6 @@ angular
           templateUrl: 'lessons/lesson.template.html'
         })
 
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/accordion');
     };
 })();
