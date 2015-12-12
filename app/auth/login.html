@@ -21,17 +21,17 @@
             <div class="form-group">
               <input type="password" class="form-control" placeholder="Password" ng-model="authCtrl.user.password">
             </div>
-            <input type="submit" class="btn btn-lg btn-block" value="Log In">
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In">
           </form> 
           <p class="text-center top-buffer">
             Or sign in with your Google or Facebook account
           </p>
-          <button type="button" ng-click="authCtrl.loginWithGoogle();" class="btn btn-lg btn-block btn-danger top-buffer">
-            Google+
-          </button> 
-          <button type="button" ng-click="authCtrl.loginWithFacebook();" class="btn btn-lg btn-block btn-primary">
-            Facebook
-          </button>
+          <a class="btn btn-block btn-social btn-google btn-lg" ng-click="authCtrl.loginWithGoogle();">
+            <span class="fa fa-google"></span> Sign in with Google
+          </a>
+          <a class="btn btn-block btn-social btn-facebook btn-lg" ng-click="authCtrl.loginWithFacebook();">
+            <span class="fa fa-facebook"></span> Sign in with Facebook
+          </a>
           <a href="#" ui-sref="home" ng-click="authCtrl.loginBtnToggle();"><h4 class="text-center top-buffer">Create an account?</h1></a>
           <a href="#" ui-sref="resetPwd" ng-click="authCtrl.loginBtnToggle();"><h4 class="text-center top-buffer">Forgot your password?</h1></a>
         </div>
