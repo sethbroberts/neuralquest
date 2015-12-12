@@ -32,6 +32,9 @@
     /*=============================================
     =            METHOD IMPLEMENTATION            =
     =============================================*/
+    function lesliesFunc(val) {
+      console.log(val);
+    };
 
     function saveShuffle (data) {
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');

@@ -98,7 +98,7 @@ angular
           templateUrl: 'templanding/temp.html',
         })
         .state('mission', {
-          url: '/mission',
+          url: '/mission/:courseName',
           controller: 'MissionCtrl as missionCtrl',
           templateUrl: 'lessons/mission.template.html',
           resolve: {
@@ -107,8 +107,8 @@ angular
                 $state.go('home');
               });
             },
-            missionData: function(Missions) {
-              return Missions.getShuffleData('Perceptron use');
+            missionData: function(Missions, $stateParams) {
+              return Missions.getShuffleData($stateParams.courseName);
             }
           }
         })
