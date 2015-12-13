@@ -14,6 +14,18 @@
     vm.reset = reset;
     vm.run = run;
 
+    // var nqConsole = function() {
+    //   return({
+    //       log: function(msg) {
+    //         consoleDiv = document.getElementById('result');
+    //         para = document.createElement('p');
+    //         text = document.createTextNode(msg);
+    //         para.appendChild(text);
+    //         consoleDiv.appendChild(para);
+    //       }
+    //   });
+    // }();
+
     init();
 
     ////////////////
@@ -50,26 +62,44 @@
     };
 
     function run() {
-      //send it to the server
-      var add = vm.result;
-      console.log(add);
-      if(add(2,3) === 5){
-        alert("great you did it.")
-      } else {
-        alert('try again');
+      //change the console.log behavior
+      document.getElementById('result').innerHTML = '';
+      consoleLog();
+      nqConsole();
+
+      $timeout(function(){
+        appendToScript($localStorage.codeObj);
+      },100);
+      
+    }
+
+    //append a given code to in the script tag. it will run the given code
+    function appendToScript(code){
+      var script = document.createElement('script');
+      try {
+        script.appendChild(document.createTextNode(code));
+        document.body.appendChild(script);
+      } catch (e) {
+        script.text = code;
+        document.body.appendChild(script);
       }
-      //wait for the response
-      //give the result back to browser.
+    }
+
+    function consoleLog(){
+      if(!console){
+        console = {};
+      };
+      var old = console.log;
+      var logger = document.getElementById('result');
+      console.log = function (message) {
+          if (typeof message == 'object') {
+              logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : message) + '<br />';
+          } else {
+              logger.innerHTML += message + '<br />';
+          }
+      }
     }
   }
 })();
 
- // The editor
-  var editor = ace.edit("code-editor");
-  editor.getSession().setMode("ace/mode/javascript");
-  editor.setOptions({ tabSize: 2 });
 
-//for every editor modification, update localstorage
-  editor.on('change', function(data){
-    localStorage.setItem(codeId, editor.getValue());
-  });
