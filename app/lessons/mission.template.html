@@ -14,29 +14,29 @@
         <div ng-switch-when="text" class="element-text">
           <h3> {{ element.title }} </h3>
           <div ng-bind-html="element.content"></div>
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="image" class="element-images">
           <img style="width: 500px; height: 300px; display: block" ng-src=" {{element.url}} " />
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="video" class="element-video">
           <p> {{ element.mediaUrl }} (will be iFrame) </p>
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="code" class="element-code">
           <pre> {{ element.content }} </pre>
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="question" class="element-question">
           <p> {{ element.prompt }} </p>
           <p></p>
           <p> {{ element.answer }} </p>
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="code-editor" class="element-code-editor">
@@ -50,21 +50,17 @@
                             fontSize: 25
                           }
                        }"></div>
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
         <div ng-switch-when="list" class="element-list">
           <ul>{{ element.content }}</ul>
-            <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
-        </div>
-
-        <div ng-switch-when="question" class="element-question">
-          <p> Question: {{ element.promptText }} </p>
-          <p> Answers: {{ element.answerText }} </p>
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveShuffle( element.sequence )">Continue</button>
+            <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
       </div>
+    <!-- END ng-repeat -->
     </div>
+    <button class="btn btn-default btn-large" ui-sref="mission({ courseName: missionCtrl.nextShuffle })" ng-click="missionCtrl.saveElement( missionCtrl.sequence )">Next Lesson</button>
   </div>
 </div>

@@ -15,7 +15,7 @@
         <h3 class="text-center">
           Your current lesson is {{accordionCtrl.currentUser.currentLesson}}
         </h3>
-        <button ui-sref="mission({ courseName: accordionCtrl.currentUser.currentLesson })" type="button" class="btn btn-default btn-block">
+        <button ui-sref="mission({ courseName: accordionCtrl.currentUser.currentShuffle })" type="button" class="btn btn-default btn-block">
           Continue
         </button>
       </div>
@@ -42,23 +42,21 @@
       <div class="accordionCoursesBox">
         <div class="accordionCoursesText">Available Courses</div>
 
-        
         <uib-accordion close-others="accordionCtrl.oneAtATime">
           
           <div class="accordion" ng-repeat="(course, shuffles) in courses">
             <uib-accordion-group heading="{{course}}">
               <div ng-repeat="(shuffle, ele) in shuffles">
-                <div class="accordionSuffleBox">
-                  {{$index+1}}. {{shuffle}} 
+                <div ng-click="accordionCtrl.updateUserPosition(shuffle)" ui-sref="mission({ courseName: shuffle })" class="accordionShuffleBox">
+                  {{$index+1}}. <a>{{shuffle}}</a>
                 </div>
               </div>
               <br/>
-
-              <button ui-sref="mission({ courseName: course })" class="btn btn-default accordionbutton">Start</button>
-
             </uib-accordion-group>
           </div>
+
         </uib-accordion>
+
       </div>
     </div>
 

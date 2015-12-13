@@ -9,6 +9,8 @@
   function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData, Users, Auth) {
     var accordionCtrl = this;
     var getLessons = getLessons;
+    var ref = new Firebase(FirebaseUrl + '/NNFlat');
+    var userRef = new Firebase(FirebaseUrl + '/users');
 
     accordionCtrl.oneAtATime = true;
 
@@ -16,6 +18,7 @@
     accordionCtrl.init();
     accordionCtrl.isNotString = isNotString;
     accordionCtrl.openFirstOne = openFirstOne;
+    accordionCtrl.updateUserPosition = updateUserPosition;
 
     /*======================================
     =            IMPLEMENTATION            =
@@ -23,37 +26,29 @@
 
     function init() {
       accordionCtrl.allEl = accordionData;
-      // console.log(accordionData);
-      // console.log('accordion',accordionCtrl.allEl);
       accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
       console.log(Auth.$getAuth());
       console.log(Users.getProfile(Auth.$getAuth().uid));
       accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid);
-      // MY EDITS
       accordionCtrl.currentUser.$loaded().then(function() {
         var currSeq = accordionCtrl.currentUser.currentSequence;
-        var ref = new Firebase(FirebaseUrl + '/NNFlat');
         ref.orderByChild('sequence')
-          .equalTo(currSeq)
-          .limitToFirst(1)
-          .on('value', function(snapshot) {
-            var data = snapshot.val();
-
-            accordionCtrl.currentUser.currentLesson = data[currSeq].course;
-
-          });
+           .equalTo(currSeq)
+           .on('value', function(snapshot) {
+             var data = snapshot.val();
+             accordionCtrl.currentUser.currentLesson = data[currSeq].course;
+             accordionCtrl.currentUser.currentShuffle = data[currSeq].shuffle;
+           });
       });
-      // END OF MY EDITS
-    }
+    };
 
     function openFirstOne(index) {
-      console.log('index:', index);
       if(index === 0){
         return true;
       } else {
         return false;
       }
-    }
+    };
 
     //get a list of step, course or shuffle.
     function getComponent(allElements, targetKey){ 
@@ -63,9 +58,22 @@
           result[allElements[key][targetKey]] = true;
         }
       }
-      console.log("result,",result);
       return result;
-    }
+    };
+
+    function updateUserPosition(shuffleName) {
+      var authData = userRef.getAuth();
+      var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
+      ref.orderByChild('shuffle').equalTo(shuffleName)
+         .limitToFirst(1)
+         .on('value', function(snapshot) {
+           var element = snapshot.val();
+           for (var key in element) {
+             var data = parseInt(key);
+           }
+           refWrite.update({ currentSequence: data });
+         });
+    };
 
     function makeLocalObject(allElements) {
       var result = {}
@@ -74,7 +82,7 @@
         var step = element['step'];
         var course = element['course'];
         var shuffle = element['shuffle'];
-        
+
         if(!result[step]) {
           result[step] = {}
         }
@@ -87,17 +95,16 @@
         result[step][course][shuffle][element] = true; 
         
       }
-      // console.log("result from makeLocalObject,",result);
       return result;
-    }
+    };
 
     function isNotString(val) {
       if(typeof val === "string"){
-        console.log('is string', val);
         return false;
       } else {
         return true;
       }
     }
-  }
+  };
+
 })();

@@ -119,11 +119,6 @@ angular
             }
           }
         })
-        // .state('mission', {
-        //   url: '/:trackName/:stepName/:courseName/',
-        //   controller: 'MissionCtrl as missionCtrl',
-        //   templateUrl: 'lessons/mission.template.html'
-        // })
         .state('build', {
           url: '/build',
           controller: 'BuildCtrl as buildCtrl',
@@ -154,11 +149,6 @@ angular
         .state('resetPwd', {
           templateUrl: 'auth/resetPwd.html',
           controller: 'AuthCtrl as authCtrl'
-        })
-        .state('lesson2', {
-          url: '/lesson2',
-          controller: 'LessonTemplateCtrl as lessonTemplateCtrl',
-          templateUrl: 'lessons/lesson.template.html'
         })
 
       $urlRouterProvider.otherwise('/accordion');
