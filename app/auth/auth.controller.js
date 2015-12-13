@@ -56,12 +56,15 @@
               if(authData.google){
                 newUser.displayName = authData.google.displayName;
                 newUser.profileImageURL = authData.google.profileImageURL;
+                // newUser.emailAddress = authData.google.email;
               }
               if(authData.facebook){
                 newUser.displayName = authData.facebook.displayName;
                 newUser.profileImageURL = authData.facebook.profileImageURL;
+                // newUser.emailAddress = authData.facebook.email;
               } 
               if(authData.password) {
+                console.log("logging authctrl.user", authCtrl.user);
                 newUser.displayName = authCtrl.user.fullname;
                 newUser.emailAddress = authCtrl.user.email;
                 newUser.profileImageURL = 'http://www.gravatar.com/avatar/';
@@ -88,12 +91,19 @@
       };
 
       function register() {
-        Auth.$createUser(authCtrl.user).then(function(auth) {
-          console.log('Registered in firebase!');
-          authCtrl.login();
-        }, function(error) {
-          authCtrl.error = error;
-        })
+        if(Auth.validatePwd(authCtrl.user.password)){
+          Auth.$createUser(authCtrl.user).then(function(auth) {
+            console.log('Registered in firebase!');
+            authCtrl.login();
+          }, function(error) {
+            authCtrl.error = error;
+          });
+        } else {
+          authCtrl.error = {message: "The password should contain at least one number and special character. Please try again."};
+          $timeout(function(){
+            authCtrl.error = null
+          }, 3000);
+        }
       };
 
       function resetPwd() {
