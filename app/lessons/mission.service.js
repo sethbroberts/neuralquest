@@ -25,7 +25,7 @@
 
       function getShuffleData(name) {
         var defer = $q.defer();
-        ref.orderByChild("course").equalTo(name).on("value", function(data) {
+        ref.orderByChild("shuffle").equalTo(name).on("value", function(data) {
           defer.resolve(data);
         });
         return defer.promise;
