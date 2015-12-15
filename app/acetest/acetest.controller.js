@@ -91,6 +91,9 @@ var nqConsole = function() {
 
     function testCases(code){
       var testCases = ' \
+      if(typeof add !== "function"){ \
+        nqConsole.log("add function should be defined."); \
+      } \
       if(add(1,2)===3){ \
         nqConsole.log(" you got it") \
       }else { \
