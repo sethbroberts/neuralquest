@@ -10,7 +10,7 @@
   angular.module('neuralquestApp')
     .controller('MissionCtrl', MissionCtrl);
 
-  function MissionCtrl ($firebaseArray, FirebaseUrl, $firebaseObject, Missions, missionData, $scope) {
+  function MissionCtrl ($firebaseArray, FirebaseUrl, $firebaseObject, Missions, missionData, $scope, Build, Users, auth) {
     var missionCtrl = this;
     var ref = new Firebase(FirebaseUrl + '/NNFlat');
     var authData = ref.getAuth();
@@ -19,7 +19,12 @@
 
     missionCtrl.processSnapshot = processSnapshot;
     missionCtrl.saveElement = saveElement;
+    missionCtrl.isAdmin = isAdmin;
+    missionCtrl.isBuildMode = isBuildMode;
+
     getSequence();
+
+    // missionCtrl.isAdminMode = BuildSrv.isAdminMode;
 
     /*=============================================
     =            METHOD IMPLEMENTATION            =
@@ -60,6 +65,17 @@
 
       });
     };
+
+    function isAdmin() {
+      //check if the current user is admin
+      var isAdmin = Users.getUserProfile(auth.uid).isAdmin;
+      return isAdmin;
+    }
+
+    function isBuildMode() {
+      //check if buildMode
+      return Build.getBuildMode();
+    }
 
   };
 

@@ -18,6 +18,7 @@
       'ui.router',
       'ui.ace',
       'ui.bootstrap',
+      'ngStorage'
     ])
 
 })();

@@ -37,7 +37,7 @@
         isUserSignedIn();
       });
       $scope.signInUser = {};
-      
+      $scope.isAdmin = isAdmin;
       // $scope.reload = reload;
 
       init();
@@ -104,5 +104,14 @@
         return $rootScope.loginToggle;
       }
       
+      function isAdmin() {
+        // console.log(Auth.$getAuth());
+        // console.log('userProfile',Users.getUserProfile(Auth.$getAuth().uid));
+        if(Auth.$getAuth()){
+          var isAdmin = Users.getUserProfile(Auth.$getAuth().uid).isAdmin;
+          return isAdmin;  
+        }
+        return false;
+      }
     }
 })();

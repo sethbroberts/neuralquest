@@ -10,9 +10,11 @@
     <div class="col-md-12" ng-repeat="element in missionCtrl.elements" ng-if="(element.sequence<=currentSequence)">
       <!-- Switch to check type and display accordingly -->
       <div ng-switch on="element.type">
-
+        <p class="missionsequence" ng-show="missionCtrl.isAdmin() && missionCtrl.isBuildMode()">{{element.sequence}}</p>
         <div ng-switch-when="text" class="element-text">
           <h3> {{ element.title }} </h3>
+
+
           <div ng-bind-html="element.content"></div>
           <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>

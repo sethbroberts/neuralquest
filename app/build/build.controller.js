@@ -3,18 +3,33 @@
 
     angular
         .module('neuralquestApp')
-        .controller('BuildCtrl', BuildCtrl);
+        .controller('BuildCtrl', ['Build','$scope',BuildCtrl]);
 
     /* @ngInject */
-    function BuildCtrl() {
+    function BuildCtrl(Build, $scope) {
         var buildCtrl = this;
-        buildCtrl.title = 'Build Controller';
+        
+        buildCtrl.submitEle = submitEle;
 
-        activate();
+        $scope.$watch('buildCtrl.eltoModify', function(newVal, oldVal){
+            // console.log("Search was changed to:"+newVal);
+            if(newVal.length > 2){
+                Build.getElementonDB(newVal).then(function(ele){
+                    buildCtrl.build = ele;
+                });
+            };
+        });
+
+        $scope.$watch('buildCtrl.editMode', function(newVal, oldVal){
+            if(newVal === 'build'){
+                buildCtrl.build = {};
+            };
+        });
 
         ////////////////
 
-        function activate() {
+        function submitEle() {
+            Build.updateBuild(buildCtrl.build);
         }
     }
 })();

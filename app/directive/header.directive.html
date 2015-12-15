@@ -9,7 +9,7 @@
       </div>
       <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-          <li>
+          <li ng-show="isAdmin()">
             <a ui-sref="build" class="buildbutton">Build </a>
           </li>
           <li>
@@ -32,7 +32,7 @@
       </div>
       <div class="container-fluid">
         <ul class="nav navbar-nav navbar-right">
-          <li>
+          <li ng-show="isAdmin()">
             <a ui-sref="build" class="buildbutton">Build</a>
           </li>
           <li>
