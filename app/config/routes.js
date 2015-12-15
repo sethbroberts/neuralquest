@@ -150,7 +150,16 @@ angular
           templateUrl: 'auth/resetPwd.html',
           controller: 'AuthCtrl as authCtrl'
         })
-
+        .state('lesson2', {
+          url: '/lesson2',
+          controller: 'LessonTemplateCtrl as lessonTemplateCtrl',
+          templateUrl: 'lessons/lesson.template.html'
+        })
+        .state('acetest', {
+          url: '/acetest',
+          controller: 'AceCtrl as aceCtrl',
+          templateUrl: 'acetest/acetest.html'
+        })
       $urlRouterProvider.otherwise('/accordion');
     };
 })();
