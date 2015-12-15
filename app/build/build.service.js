@@ -31,7 +31,7 @@
       console.log("issertbuild fired");
       
       ref.child(content.sequence).update(content);
-      ref.save();
+      //ref.save();
     }
 
     function getElementonDB(sequenceNum){
