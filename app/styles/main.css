@@ -283,8 +283,8 @@ body {
 
 .profileName {
   margin-left: 10px;
-  margin-top: 17px;
-  margin-right: 20px;
+  margin-top: 10px;
+  padding-right: 30px;
   font-size: 1em;
 }
 
@@ -329,6 +329,9 @@ body {
   position:absolute;
   top:-15px;
   right: 20px;
+}
+.mainpagemenu {
+  padding-right: 15px;
 }
 /*----------------------------------------------------------*/
 /*                       Style Classes                      */
