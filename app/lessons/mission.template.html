@@ -35,10 +35,27 @@
         </div>
 
         <div ng-switch-when="question" class="element-question">
-          <p> {{ element.prompt }} </p>
-          <p></p>
-          <p> {{ element.answer }} </p>
-          <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
+
+
+          <div>
+            <form name="form" class="css-form" novalidate>
+              <p> {{ element.prompt }} </p>
+              Answer:
+              <br />
+              <input type="radio" ng-model="response" value="a" />{{element.answer.a}}
+              <br />
+              <input type="radio" ng-model="response" value="b" />{{element.answer.b}}
+              <br />
+              <input type="radio" ng-model="response" value="c" ng-show="element.answer.c" />{{element.answer.c}}
+              <br />
+              <input type="radio" ng-model="response" value="d" ng-show="element.answer.d" />{{element.answer.d}}
+              <br />
+            </form>
+            <button ng-show="element.answer.correct === response" class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Great Job - Continue</button>
+            <code ng-show="response && element.answer.correct !== response">Try Again!</code>
+          </div>
+
+
         </div>
 
         <div ng-switch-when="code-editor" class="element-code-editor">
