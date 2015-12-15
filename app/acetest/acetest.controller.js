@@ -1,3 +1,15 @@
+var nqConsole = function() {
+  return({
+      log: function(msg) {
+        consoleDiv = document.getElementById('result');
+        para = document.createElement('p');
+        text = document.createTextNode(msg);
+        para.appendChild(text);
+        consoleDiv.appendChild(para);
+      }
+  });
+}();
+
 (function() {
   'use strict';
 
@@ -9,22 +21,13 @@
   function AceCtrl($localStorage, $timeout, Ace) {
     var vm = this;
     var editor;
+    // var nqconsole = {};
 
     vm.getValue = getValue;
     vm.reset = reset;
     vm.run = run;
 
-    // var nqConsole = function() {
-    //   return({
-    //       log: function(msg) {
-    //         consoleDiv = document.getElementById('result');
-    //         para = document.createElement('p');
-    //         text = document.createTextNode(msg);
-    //         para.appendChild(text);
-    //         consoleDiv.appendChild(para);
-    //       }
-    //   });
-    // }();
+    
 
     init();
 
@@ -62,13 +65,13 @@
     };
 
     function run() {
-      //change the console.log behavior
       document.getElementById('result').innerHTML = '';
-      consoleLog();
-      nqConsole();
-
+      // console.log('aceCode script block', document.getElementsByClassName('aceCode'));
+      $('.aceCode').remove();
+      
       $timeout(function(){
         appendToScript($localStorage.codeObj);
+        appendToScript(testCases());
       },100);
       
     }
@@ -76,6 +79,7 @@
     //append a given code to in the script tag. it will run the given code
     function appendToScript(code){
       var script = document.createElement('script');
+      script.setAttribute('class', 'aceCode');
       try {
         script.appendChild(document.createTextNode(code));
         document.body.appendChild(script);
@@ -85,13 +89,24 @@
       }
     }
 
+    function testCases(code){
+      var testCases = ' \
+      if(add(1,2)===3){ \
+        nqConsole.log(" you got it") \
+      }else { \
+        nqConsolelog("try again"); \
+      } \
+      ';
+      return testCases;
+    }
+
     function consoleLog(){
-      if(!console){
-        console = {};
-      };
+      // if(!console){
+      //   console = {};
+      // };
       var old = console.log;
       var logger = document.getElementById('result');
-      console.log = function (message) {
+      nqconsole.log = function (message) {
           if (typeof message == 'object') {
               logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : message) + '<br />';
           } else {
