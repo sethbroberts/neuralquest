@@ -10,7 +10,7 @@
   angular.module('neuralquestApp')
     .controller('ProfileCtrl', ProfileCtrl);
 
-    function ProfileCtrl ($state, md5, auth, profile, FirebaseUrl, Auth, $timeout) {
+    function ProfileCtrl ($state, md5, auth, profile, FirebaseUrl, Auth, $timeout, Users, Build) {
       var profileCtrl = this;
 
       profileCtrl.profile = profile;
@@ -20,6 +20,9 @@
       profileCtrl.resetPwdToggle = false;
       profileCtrl.changePwdIfMatch = changePwdIfMatch;
       profileCtrl.resetEle = resetEle;
+      profileCtrl.isAdmin = isAdmin;
+      profileCtrl.changeBuildMode = changeBuildMode
+      profileCtrl.buildMode = Build.getBuildMode();
 
       if (auth.google) {
         profileCtrl.pwdUser = false;
@@ -139,6 +142,15 @@
           //todo: change this
           $state.go('accordion');
         }
+      }
+
+      function isAdmin() {
+        var isAdmin = Users.getUserProfile(auth.uid).isAdmin;
+        return isAdmin;
+      }
+
+      function changeBuildMode() {
+        Build.setBuildMode(profileCtrl.buildMode);
       }
     }
 

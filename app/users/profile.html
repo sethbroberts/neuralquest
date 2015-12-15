@@ -14,6 +14,9 @@
         <img class="profilePageImage" src="{{profileCtrl.profile.profileImageURL}}">
         <p ng-hide="profileCtrl.pwdUser">Name: {{profileCtrl.profile.displayName}}</p>
         <p ng-show="profileCtrl.pwdUser">Email Address: {{profileCtrl.profile.emailAddress}}</p>
+        <div ng-show="profileCtrl.isAdmin()" class="checkbox">
+          <label><input ng-click="profileCtrl.changeBuildMode();" ng-model="profileCtrl.buildMode" type="checkbox" value="" ng-checked="profileCtrl.buildMode">Enable Build Mode</label>
+        </div>
         <form ng-submit="profileCtrl.resetEle();">
           <br />
           <input ng-show="profileCtrl.profile.password" type="submit" class="btn btn-default inline" value="change password ">
