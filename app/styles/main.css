@@ -12,6 +12,30 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.nav a {
+  text-decoration: none;
+  color: #aaa;
+}
+
+.nav a:hover {
+  text-decoration: none;
+  color: #eee;
+}
+
+.nav a:visited {
+  text-decoration: none;
+  color: #aaa;
+}
+
+.nav a:active {
+  text-decoration: none;
+  color: #aaa;
+}
+
+.accordionCoursesBox a {
+  cursor: pointer;
+}
+
 .page-wrapper {
   max-width:550px;
   margin-right: auto;
