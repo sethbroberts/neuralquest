@@ -41,17 +41,19 @@
                 <p> {{ element.prompt }} </p>
                 Answer:
                 <br />
-                <input type="radio" ng-model="missionCtrl.answerResponse" value="a" />  {{element.answer.a}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="a" />  {{element.answer.a}}
                 <br />
-                <input type="radio" ng-model="missionCtrl.answerResponse" value="b" />  {{element.answer.b}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="b" />  {{element.answer.b}}
                 <br />
-                <input type="radio" ng-model="missionCtrl.answerResponse" value="c" ng-show="element.answer.c" />  {{element.answer.c}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="c" ng-show="element.answer.c" />  {{element.answer.c}}
                 <br />
-                <input type="radio" ng-model="missionCtrl.answerResponse" value="d" ng-show="element.answer.d" />  {{element.answer.d}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="d" ng-show="element.answer.d" />  {{element.answer.d}}
                 <br />
               </form>
+
               <!-- <button ng-show="element.answer.correct === response" class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Great Job - Continue</button> -->
-              <code ng-show="missionCtrl.answerResponse && element.answer.correct !== answerResponse">Try Again!</code>
+              <code ng-show="answerResponse && element.answer.correct !== answerResponse">Try Again!</code>
+
               <!-- {{missionCtrl.answerResponse}} -->
             </div>
 
@@ -75,7 +77,7 @@
           </div>
         </div>
       </div><!-- END ng-repeat -->
-      <button ng-show="!missionCtrl.gate.gateNeededEleNum || missionCtrl.answerResponse" class="nextbotton btn btn-default btn-large" ui-sref="mission({ courseName: missionCtrl.nextShuffle })" ng-click="missionCtrl.saveElement( missionCtrl.sequence )">Next Lesson</button>
+      <button ng-show="!missionCtrl.gate.gateNeededEleNum" class="nextbotton btn btn-default btn-large" ui-sref="mission({ courseName: missionCtrl.nextShuffle })" ng-click="missionCtrl.saveElement( missionCtrl.sequence )">Next Lesson</button>
     </div>
     <div class="col-md-1"></div>
   </div>

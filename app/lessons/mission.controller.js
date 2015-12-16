@@ -12,6 +12,7 @@ function openGate() {
 }
 function resetGate() {
   nq_gate.gateNeededEleNum = 0;
+  console.log('gate count reset');
 }
 
 var nqConsole = function() {
@@ -79,6 +80,7 @@ var nqConsole = function() {
     missionCtrl.initEditor = initEditor;
     missionCtrl.checkGate = checkGate;
     missionCtrl.showCodeAnswer = showCodeAnswer;
+    missionCtrl.multipleChoiceChecker = multipleChoiceChecker;
 
     resetGate();
     checkGateNeededEle();
@@ -87,6 +89,13 @@ var nqConsole = function() {
     // init();
 
     // missionCtrl.isAdminMode = BuildSrv.isAdminMode;
+
+    function multipleChoiceChecker(answer) {
+      if (answer) {
+        openGate();
+      }
+    }
+
 
     /*=============================================
     =            METHOD IMPLEMENTATION            =
