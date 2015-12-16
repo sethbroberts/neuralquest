@@ -36,9 +36,5 @@ describe('Accordion.service.spec', function () {
         expect(result).toBeTruthy();
       });
     });
-
-
   });
-
-
 });
