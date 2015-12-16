@@ -11,7 +11,6 @@ A teaching platform that caters to educating people about neural networks.
 
 ![Screenshot after signing in](./readme.png?raw=true "Main lessons page")
 
-
 ## Table of Contents
 
 1. [Usage](#Usage)
@@ -41,7 +40,6 @@ A teaching platform that caters to educating people about neural networks.
 From within the root directory:
 
 ```npm install```
-
 ```bower install```
 
 ### Roadmap

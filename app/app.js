@@ -21,7 +21,8 @@
       'ngStorage',
       'ngAnimate',
       'toaster',
-      'youtube-embed'
+      'youtube-embed',
+      'chart.js'
     ])
 
     .run(["$rootScope", "$window", '$location', scrollToTop]);

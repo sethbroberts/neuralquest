@@ -44,6 +44,8 @@ describe('accordion.controller.spec', function () {
 
   xdescribe('AccordionCtrl methods', function () {
     it('should have all required methods', function () {
+  describe('AccordionCtrl methods', function () {
+    xit('should have all required methods', function () {
       // expect(AccordionCtrl.openFirstOne).to.be.a("function");
       // expect(AccordionCtrl.updateUserPosition).to.be.a("function");
       // expect(AccordionCtrl.isNotString).to.be.a("function");
@@ -108,5 +110,3 @@ describe('accordion.controller.spec', function () {
   });
 
 });
-
-
