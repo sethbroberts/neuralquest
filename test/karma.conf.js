@@ -40,6 +40,8 @@ module.exports = function(config) {
 
       //out app code
       'app/*.js',
+      'app/**/*.js',
+      'app/**/**/*.js',
 
       //spec files
       'test/spec/**/*.js'

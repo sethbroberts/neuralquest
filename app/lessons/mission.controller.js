@@ -108,10 +108,6 @@ var nqConsole = function() {
       }
     }
 
-    function lesliesFunc(val) {
-      console.log(val);
-    };
-
     function saveElement(data) {
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
       // console.log('you are here', data);

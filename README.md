@@ -1,11 +1,16 @@
 # networkFlambe
-A teaching platform that caters to educating people about neural network.
+A teaching platform that caters to educating people about neural networks.
 
 ## Team
 
-  - __Product Owner__: Seth
+  - __Product Owner__: Leslie
   - __Scrum Master__: Robby
-  - __Development Team Members__: Peter, Leslie
+  - __Development Team Members__: Peter, Seth
+
+## Features
+
+![Screenshot after signing in](./readme.png?raw=true "Main lessons page")
+
 
 ## Table of Contents
 
@@ -19,15 +24,15 @@ A teaching platform that caters to educating people about neural network.
 
 ## Usage
 
-> Some usage instructions
+1. __[Companion package must be installed](https://github.com/networkFlambe/neuralquestServer)__ - [neuralquestServer](https://github.com/networkFlambe/neuralquestServer) Calls to the neural network will be answered by this server.
+
+1. To switch your own firebase files change the constant in app/common/root.service.js
+
 
 ## Requirements
 
-- tbd
-- tbd
-- tbd
-- etc
-- etc
+- Node > 0.10
+- npm 2.14
 
 ## Development
 
@@ -35,9 +40,9 @@ A teaching platform that caters to educating people about neural network.
 
 From within the root directory:
 
-```sh
+```npm install```
 
-```
+```bower install```
 
 ### Roadmap
 
