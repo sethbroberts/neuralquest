@@ -41,6 +41,7 @@
                 <p> {{ element.prompt }} </p>
                 Answer:
                 <br />
+
                 <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="a" />  {{element.answer.a}}
                 <br />
                 <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="b" />  {{element.answer.b}}

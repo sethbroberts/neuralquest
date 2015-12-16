@@ -19,7 +19,11 @@
   },
   "overrides": {
     "ace-builds": {
-      "main": "src-min-noconflict/ace.js"
+      "main": [
+        "src-min-noconflict/ace.js",
+        "src-min-noconflict/mode-javascript.js",
+        "src-min-noconflict/theme-monokai.js"
+        ]
     }
   },
   "appPath": "app",
