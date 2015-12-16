@@ -350,7 +350,7 @@ body {
   text-align: right;
   color: #aaa;
   font-size: 0.8em;
-  position:absolute;
+  
   top:-15px;
   right: 20px;
 }
@@ -364,12 +364,21 @@ body {
   bottom: 0;
   left: 0;
   height: 300px;
-  width: 600px;
+  margin-bottom: 5px;
+  border-radius: 3px;
 }
 #result {
-  background-color: #aaa;
+  /*background-color: #aaa;*/
   position: relative;
-  width: 600px;
+  
+}
+.nextbotton{
+  margin-top: 10px;
+}
+
+.missiontitle{
+  margin-left: 20px;
+  padding-top: 10px;
 }
 /*----------------------------------------------------------*/
 /*                       Style Classes                      */
