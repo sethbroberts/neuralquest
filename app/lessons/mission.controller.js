@@ -5,14 +5,14 @@ var nq_gate = {
 
 //this function will need to be added to an answer block of a test case.
 function openGate() {
-  if(nq_gate.gateNeededEleNum >= 0){
+  if(nq_gate.gateNeededEleNum > 0){
     nq_gate.gateNeededEleNum -= 1;
     console.log('currentGateNum', nq_gate.gateNeededEleNum);
   }
 }
 function resetGate() {
   nq_gate.gateNeededEleNum = 0;
-  console.log('gate count reset');
+  // console.log('gate count reset');
 }
 
 var nqConsole = function() {
