@@ -116,6 +116,9 @@ angular
             },
             missionData: function(Missions, $stateParams) {
               return Missions.getShuffleData($stateParams.courseName);
+            },
+            lastEle: function(Missions) {
+              return Missions.getLastElement();
             }
           }
         })
@@ -143,6 +146,16 @@ angular
             },
             accordionData: function(AccordionService) {
               return AccordionService.getLessons();
+            }
+          }
+        })
+        .state('missionComplete', {
+          templateUrl: 'lessons/missioncomplete.html',
+          resolve: {
+            auth: function($state, Users, Auth) {
+              return Auth.$requireAuth().catch(function() {
+                $state.go('home');
+              });
             }
           }
         })

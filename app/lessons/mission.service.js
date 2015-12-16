@@ -16,6 +16,7 @@
 
       var Mission = {};
       Mission.getShuffleData = getShuffleData;
+      Mission.getLastElement = getLastElement;
 
       return Mission;
 
@@ -30,7 +31,14 @@
         });
         return defer.promise;
       };
+      function getLastElement(){
+        var defer = $q.defer();
+        ref.orderByChild('sequence').limitToLast(1).on('value', function(snapshot){
+          defer.resolve(snapshot.val());
+        });
 
+        return defer.promise;
+      }
     };
 
 })();
