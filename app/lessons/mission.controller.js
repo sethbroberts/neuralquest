@@ -1,3 +1,16 @@
+//console.log alternative for code editor.
+var nqConsole = function() {
+  return({
+      log: function(msg) {
+        consoleDiv = document.getElementById('result');
+        para = document.createElement('p');
+        text = document.createTextNode(msg);
+        para.appendChild(text);
+        consoleDiv.appendChild(para);
+      }
+  });
+}();
+
 /**
  *
  * Mission Template Controller
@@ -10,10 +23,17 @@
   angular.module('neuralquestApp')
     .controller('MissionCtrl', MissionCtrl);
 
-  function MissionCtrl ($firebaseArray, FirebaseUrl, $firebaseObject, Missions, missionData, $scope, Build, Users, auth) {
+  function MissionCtrl ($firebaseArray, FirebaseUrl, 
+    $firebaseObject, Missions, missionData, 
+    $scope, Build, Users, auth,
+    $localStorage, $timeout
+    ) {
+    
     var missionCtrl = this;
+    var editor;
     var ref = new Firebase(FirebaseUrl + '/NNFlat');
     var authData = ref.getAuth();
+    var editorInitialized = false;
 
     processSnapshot(missionData);
 
@@ -21,14 +41,27 @@
     missionCtrl.saveElement = saveElement;
     missionCtrl.isAdmin = isAdmin;
     missionCtrl.isBuildMode = isBuildMode;
+    missionCtrl.reset = reset;
+    missionCtrl.run = run;
+    missionCtrl.initEditor = initEditor;
 
     getSequence();
+
+    // init();
 
     // missionCtrl.isAdminMode = BuildSrv.isAdminMode;
 
     /*=============================================
     =            METHOD IMPLEMENTATION            =
     =============================================*/
+    function initEditor(prompt) {
+      if(!editorInitialized){
+        initCodeEditor(prompt);
+        trackCode();  
+        editorInitialized = true;
+      }
+    }
+
     function lesliesFunc(val) {
       console.log(val);
     };
@@ -76,6 +109,75 @@
       //check if buildMode
       return Build.getBuildMode();
     }
+
+
+    /* methods for Ace Editor */
+    function initCodeEditor(prompt) {
+      var codeEditor = document.getElementById("code-editor");
+      if(codeEditor){
+        editor = ace.edit("code-editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/javascript");
+        editor.setValue(prompt); 
+        $localStorage.codeObj = prompt; 
+      }
+    };
+
+    function trackCode() {
+      if(editor){
+        editor.on("change", function(posObj){
+          $localStorage.codeObj = editor.getValue();
+        });
+      }
+    };
+
+    // function getValue() {
+    //   console.log('getValue called');
+    //   vm.result = $localStorage.codeObj;
+    //   console.log(vm.result);
+    // };
+
+    function reset(prompt) {
+      //initial value will come from DB later. need to fix here.
+      editor.setValue(prompt);
+      editor.getSession().setUndoManager(new ace.UndoManager());
+      $localStorage.codeObj = '';
+      missionCtrl.codeResult = '';
+    };
+
+    function run(testCase) {
+      document.getElementById('result').innerHTML = '';
+      // console.log('aceCode script block', document.getElementsByClassName('aceCode'));
+      $('.aceCode').remove();
+
+      var temp; 
+      temp = $localStorage.codeObj;
+      $localStorage.codeObj = '';
+
+      $timeout(function(){
+        missionCtrl.codeResult = temp;
+
+        appendToScript(temp);
+        appendToScript(testCase);
+
+      },100);
+
+
+    }
+      
+
+    //append a given code to in the script tag. it will run the given code
+    function appendToScript(code){
+      var script = document.createElement('script');
+      script.setAttribute('class', 'aceCode');
+      try {
+        script.appendChild(document.createTextNode(code));
+        document.body.appendChild(script);
+      } catch (e) {
+        script.text = code;
+        document.body.appendChild(script);
+      }
+    }    
 
   };
 

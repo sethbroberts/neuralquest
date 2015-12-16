@@ -59,16 +59,13 @@
         </div>
 
         <div ng-switch-when="code-editor" class="element-code-editor">
-          <div ng-model="element.prompt" ui-ace="{
-                        useWrapMode : true,
-                        showGutter: true,
-                        theme:'monokai',
-                        mode: 'javascript',
-                        firstLineNumber: 1,
-                        advanced: {
-                            fontSize: 25
-                          }
-                       }"></div>
+          {{missionCtrl.initEditor(element.prompt)}}
+          <div id="code-editor"></div>
+          <div id="result" ng-show="missionCtrl.codeResult">
+          </div>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.reset(element.prompt)">reset</button>
+          <button class="btn btn-default btn-large" ng-click="missionCtrl.run(element.testCase)">run</button>
+          <br />
           <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button>
         </div>
 
