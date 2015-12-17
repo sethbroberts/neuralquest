@@ -40,6 +40,7 @@ A teaching platform that caters to educating people about neural networks.
 From within the root directory:
 
 ```npm install```
+
 ```bower install```
 
 ### Roadmap
