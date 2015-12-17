@@ -54,6 +54,7 @@
 
               <!-- <button ng-show="element.answer.correct === response" class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Great Job - Continue</button> -->
               <code ng-show="answerResponse && element.answer.correct !== answerResponse">Try Again!</code>
+              <code ng-show="answerResponse && element.answer.correct === answerResponse">Great Job!</code>
 
               <!-- {{missionCtrl.answerResponse}} -->
             </div>
