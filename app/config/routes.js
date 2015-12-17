@@ -7,10 +7,10 @@ angular
 
     function routes ($stateProvider, $urlRouterProvider) {
       $stateProvider
-        .state('home', {
-          url: '/',
+        .state('signup', {
+          url: '/signup',
           controller: 'AuthCtrl as authCtrl',
-          templateUrl: 'home/home.html',
+          templateUrl: 'auth/signup.html',
           resolve: {
             "currentAuth": ["Auth", function(Auth){
               return Auth.$waitForAuth();
@@ -25,7 +25,7 @@ angular
           }
         })
         .state('login', {
-          url: '/login',
+          url: '/',
           controller: 'AuthCtrl as authCtrl',
           templateUrl: 'auth/login.html',
           resolve: {

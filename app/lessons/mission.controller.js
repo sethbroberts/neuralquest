@@ -27,20 +27,6 @@ var nqConsole = function() {
   });
 }();
 
-//show all elements
-//show all elements up to a gate(code-editor/question);
-  //keep track of current gate and next gate.
-//if user solves it,
-  //chagne the curernt to next one.
-  //find out next gate and save it? 
-  //give the user seqence# of the gate
-  //open elements up to the next gate
-
-//continue button : should show next element( not 10 ahead one)
-//show all elments of page unless you have prompt type(code-ediotr, question);
-//user should pass the prompt to see next gate(code-editor or question type)
-
-
 /**
  *
  * Mission Template Controller
@@ -198,7 +184,7 @@ var nqConsole = function() {
         editor = ace.edit("code-editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
-        editor.setValue(prompt); 
+        editor.setValue(prompt, 1); 
         $localStorage.codeObj = prompt;   
       }
     };
@@ -213,14 +199,14 @@ var nqConsole = function() {
 
     function reset(prompt) {
       //initial value will come from DB later. need to fix here.
-      editor.setValue(prompt);
+      editor.setValue(prompt, 1);
       editor.getSession().setUndoManager(new ace.UndoManager());
       $localStorage.codeObj = '';
       missionCtrl.codeResult = '';
     };
 
     function showCodeAnswer(answer){
-      editor.setValue(answer);
+      editor.setValue(answer, 1);
       editor.getSession().setUndoManager(new ace.UndoManager());
       $localStorage.codeObj = '';
       missionCtrl.codeResult = '';

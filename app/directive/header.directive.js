@@ -91,7 +91,7 @@
         Auth.$unauth();
         Users.currentUser = '';
         $rootScope.loginToggle = false;
-        $state.go('home');
+        $state.go('login');
       };
 
       //method for Login/Signup swap
