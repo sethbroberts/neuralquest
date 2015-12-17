@@ -23,6 +23,13 @@ var nqConsole = function() {
         text = document.createTextNode(msg);
         para.appendChild(text);
         consoleDiv.appendChild(para);
+      },
+      alert: function(msg) {
+        consoleDiv = document.getElementById('result');
+        alert = document.createElement('code');
+        text = document.createTextNode(msg);
+        alert.appendChild(text);
+        consoleDiv.appendChild(alert);
       }
   });
 }();
@@ -67,7 +74,6 @@ var nqConsole = function() {
     missionCtrl.checkGate = checkGate;
     missionCtrl.showCodeAnswer = showCodeAnswer;
     missionCtrl.multipleChoiceChecker = multipleChoiceChecker;
-
     resetGate();
     checkGateNeededEle();
 
@@ -231,7 +237,7 @@ var nqConsole = function() {
 
       },100);
     }
-      
+
     //append a given code to in the script tag. it will run the given code
     function appendToScript(code){
       var script = document.createElement('script');
@@ -243,7 +249,8 @@ var nqConsole = function() {
         script.text = code;
         document.body.appendChild(script);
       }
-    }    
+    }
+
 
   };
 
