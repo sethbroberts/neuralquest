@@ -32,6 +32,26 @@ body {
   color: #aaa;
 }
 
+.maincontentwrapper a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.maincontentwrapper a:hover {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.maincontentwrapper a:visited {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.maincontentwrapper a:active {
+  text-decoration: none;
+  color: #ccc;
+}
+
 .accordionCoursesBox a {
   cursor: pointer;
 }
@@ -338,12 +358,16 @@ body {
   margin: 6% 0;
 }
 .maincontentwrapper {
+  color: #eee;
   background-color: rgba(0,0,0,0.6);
   border-radius: 20px;
   padding: 0 30px 30px 30px;
 }
 .pwdResetInputbox {
   margin: 10px 0;
+}
+.maincontentwrapper h1 {
+  padding-bottom: 10px;
 }
 
 .missionsequence {
