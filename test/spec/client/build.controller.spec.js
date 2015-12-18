@@ -22,7 +22,7 @@ describe('build.controller.spec', function () {
 
   describe('BuildCtrl methods', function () {
     it('should have submitEle Method', function () {
-      expect(BuildCtrl.submitEle).to.be.a("function");
+      expect(typeof BuildCtrl.submitEle).toBe("function");
     });
   });
 

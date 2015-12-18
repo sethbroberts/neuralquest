@@ -38,9 +38,13 @@ describe('accordion.controller.spec', function () {
 
   describe('AccordionCtrl methods', function () {
     it('should have all required methods', function () {
-      expect(AccordionCtrl.openFirstOne).to.be.a("function");
-      expect(AccordionCtrl.updateUserPosition).to.be.a("function");
-      expect(AccordionCtrl.isNotString).to.be.a("function");
+      // expect(AccordionCtrl.openFirstOne).to.be.a("function");
+      // expect(AccordionCtrl.updateUserPosition).to.be.a("function");
+      // expect(AccordionCtrl.isNotString).to.be.a("function");
+
+      expect(typeof AccordionCtrl.openFirstOne).toBe('function');
+      expect(typeof AccordionCtrl.updateUserPosition).toBe('function');
+      expect(typeof AccordionCtrl.isNotString).toBe('function');
 
     });
   });
@@ -48,11 +52,11 @@ describe('accordion.controller.spec', function () {
   describe('isNotString unit tests', function () {
     it('should return true for not string type input', function () {
       var result = AccordionCtrl.isNotString(1);
-      expect(result).to.be.true;
+      expect(result).toBe(true);
     });
     it('should return false for string type input', function () {
       var result = AccordionCtrl.isNotString('string');
-      expect(result).to.be.false;
+      expect(result).toBe(false);
     });  
   });
 
@@ -79,17 +83,17 @@ describe('accordion.controller.spec', function () {
     }
     it('should return a result of an object', function () {
       var result = AccordionCtrl.makeLocalObject(allElements);
-      expect(typeof result).to.equal("object");
+      expect(typeof result).toEqual("object");
     });
     it('should have an object with expected properties', function () {
       var result = AccordionCtrl.makeLocalObject(allElements);
-      expect(result.step.testcourse.testshuffle).to.exist;
+      expect(result.step.testcourse.testshuffle).toBeTruthy();
     });
   });
   
   describe('openFirstOne unit tests', function () {
     it('should return true for input 0', function () {
-      expect(AccordionCtrl.openFirstOne(0)).to.equal(true);
+      expect(AccordionCtrl.openFirstOne(0)).toEqual(true);
     });
   });
 

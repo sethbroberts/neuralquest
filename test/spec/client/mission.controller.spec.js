@@ -41,21 +41,21 @@ describe('Missions.controller.spec', function () {
   describe('MissionCtrl', function () {
     
     it('should have all necessary methods', function() {
-      expect(MissionCtrl.processSnapshot).to.be.a('function');
-      expect(MissionCtrl.saveElement).to.be.a('function');
-      expect(MissionCtrl.isAdmin).to.be.a('function');
-      expect(MissionCtrl.isBuildMode).to.be.a('function');
-      expect(MissionCtrl.reset).to.be.a('function');
-      expect(MissionCtrl.initEditor).to.be.a('function');
-      expect(MissionCtrl.checkGate).to.be.a('function');
-      expect(MissionCtrl.showCodeAnswer).to.be.a('function');
-      expect(MissionCtrl.multipleChoiceChecker).to.be.a('function');
+      expect(typeof MissionCtrl.processSnapshot).toBe('function');
+      expect(typeof MissionCtrl.saveElement).toBe('function');
+      expect(typeof MissionCtrl.isAdmin).toBe('function');
+      expect(typeof MissionCtrl.isBuildMode).toBe('function');
+      expect(typeof MissionCtrl.reset).toBe('function');
+      expect(typeof MissionCtrl.initEditor).toBe('function');
+      expect(typeof MissionCtrl.checkGate).toBe('function');
+      expect(typeof MissionCtrl.showCodeAnswer).toBe('function');
+      expect(typeof MissionCtrl.multipleChoiceChecker).toBe('function');
     })
 
   });
   describe('isAdmin unit test', function () {
     it('should return true for an admin user', function () {
-      expect(MissionCtrl.isAdmin()).to.be.true;
+      expect(MissionCtrl.isAdmin()).toBe(true);
     });
   });
   describe('isBuildMode unit test', function () {
@@ -64,7 +64,7 @@ describe('Missions.controller.spec', function () {
       if(MissionCtrl.isBuildMode() === true || MissionCtrl.isBuildMode() === false){
         result = true;
       }
-      expect(result).to.be.true;
+      expect(result).toBe(true);
     });
   });
   describe('processSnapshot unit test', function () {

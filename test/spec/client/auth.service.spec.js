@@ -19,11 +19,11 @@ describe('auth.service.spec', function () {
 
   describe('Auth.service methods check', function () {
     it('should have OAuthLogin Method', function () {
-      expect(Auth.OAuthLogin).to.be.a("function");
+      expect(typeof Auth.OAuthLogin).toBe("function");
     });
 
     it('should have validatePwd Method', function () {
-      expect(Auth.validatePwd).to.be.a("function");
+      expect(typeof Auth.validatePwd).toBe("function");
     });
   });
 
@@ -33,15 +33,15 @@ describe('auth.service.spec', function () {
     var goodPwd = "Uneed12#";
 
     it('should return false for a bad password', function () {
-      expect(Auth.validatePwd(simplePwd)).to.be.false;
+      expect(Auth.validatePwd(simplePwd)).toBe(false);
     });
 
     it('should return false for a lengthy but simple password', function () {
-      expect(Auth.validatePwd(lengthyPwd)).to.be.false;
+      expect(Auth.validatePwd(lengthyPwd)).toBe(false);
     });
 
     it('should return true for a good password', function () {
-      expect(Auth.validatePwd(goodPwd)).to.be.true;
+      expect(Auth.validatePwd(goodPwd)).toBe(true);
     });
   });
   
@@ -49,7 +49,7 @@ describe('auth.service.spec', function () {
     it('should function okay', function () { //weak
       var ref = new Firebase(FirebaseUrl);
       var auth = $firebaseAuth(ref);
-      expect(Auth.OAuthLogin('google')).to.be.okay;
+      expect(Auth.OAuthLogin('google')).toBeTruthy();
     });
     
 

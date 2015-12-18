@@ -18,16 +18,16 @@ describe('build.service.spec', function () {
 
   describe('Build.service methods check', function () {
     it('should have setBuildMode Method', function () {
-      expect(Build.setBuildMode).to.be.a("function");
+      expect(typeof Build.setBuildMode).toBe("function");
     });
     it('should have getBuildMode Method', function () {
-      expect(Build.getBuildMode).to.be.a("function");
+      expect(typeof Build.getBuildMode).toBe("function");
     });
     it('should have updateBuild Method', function () {
-      expect(Build.updateBuild).to.be.a("function");
+      expect(typeof Build.updateBuild).toBe("function");
     });
     it('should have getElementonDB Method', function () {
-      expect(Build.getElementonDB).to.be.a("function");
+      expect(typeof Build.getElementonDB).toBe("function");
     });
   });
 
@@ -37,7 +37,7 @@ describe('build.service.spec', function () {
 
       Build.setBuildMode();
 
-      expect($localStorage.isBuildMode).to.be.true;  
+      expect($localStorage.isBuildMode).toBe(true);  
     });
 
   });
@@ -46,7 +46,7 @@ describe('build.service.spec', function () {
     it('should return Boolean buildMode', function () {
       $localStorage.isBuildMode = false;
 
-      expect(Build.getBuildMode()).to.be.false;  
+      expect(Build.getBuildMode()).toBe(false);  
     });
 
   });

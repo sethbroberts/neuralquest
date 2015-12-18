@@ -14,10 +14,10 @@ describe('Users.service.spec', function () {
 
   describe('Users service method check', function () {
     it('should have all needed methods', function () {
-      expect(Users.getProfile).to.be.a('function');
-      expect(Users.getDisplayName).to.be.a('function');
-      expect(Users.getUserProfile).to.be.a('function');
-      expect(Users.getGravatar).to.be.a('function');
+      expect(typeof Users.getProfile).toBe('function');
+      expect(typeof Users.getDisplayName).toBe('function');
+      expect(typeof Users.getUserProfile).toBe('function');
+      expect(typeof Users.getGravatar).toBe('function');
     });
   });
 });
