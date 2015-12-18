@@ -31,7 +31,7 @@
               defer.resolve(authData);
             })
             .catch(function (err){
-              console.error("Facebook Authentication Failed with an Error:", err);
+              console.error("Authentication Failed with an Error:", err);
             });
         return defer.promise;
       }
