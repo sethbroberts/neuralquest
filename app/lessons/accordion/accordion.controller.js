@@ -19,6 +19,7 @@
     accordionCtrl.isNotString = isNotString;
     accordionCtrl.openFirstOne = openFirstOne;
     accordionCtrl.updateUserPosition = updateUserPosition;
+    accordionCtrl.makeLocalObject = makeLocalObject;
 
     /*======================================
     =            IMPLEMENTATION            =
@@ -27,6 +28,7 @@
     function init() {
       accordionCtrl.allEl = accordionData;
       accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
+      console.log(Auth.$getAuth());
       accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid);
       accordionCtrl.currentUser.$loaded().then(function() {
         var currSeq = accordionCtrl.currentUser.currentSequence;

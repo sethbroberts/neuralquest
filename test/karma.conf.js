@@ -14,7 +14,8 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha', 'chai'],
+    // frameworks: ['mocha', 'chai-as-promised', 'chai'],
+    frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -34,6 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/ngstorage/ngStorage.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/mockfirebase/browser/mockfirebase.js',
       // endbower
       // 'app/scripts/**/*.js',
       'test/mock/**/*.js',
@@ -41,7 +43,6 @@ module.exports = function(config) {
       //out app code
       'app/*.js',
       'app/**/*.js',
-      'app/**/**/*.js',
 
       //spec files
       'test/spec/**/*.js'
@@ -64,15 +65,16 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers: [
       'PhantomJS',
-      'Chrome'
+      // 'Chrome'
     ],
 
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      // 'karma-jasmine'
-      'karma-mocha',
-      'karma-chai'
+      'karma-jasmine'
+      // 'karma-mocha',
+      // 'karma-chai',
+      // 'karma-chai-as-promised'
     ],
 
     // Continuous Integration mode
