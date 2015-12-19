@@ -17,6 +17,7 @@
       var Mission = {};
       Mission.getShuffleData = getShuffleData;
       Mission.getLastElement = getLastElement;
+      Mission.codeEditorApiCall = codeEditorApiCall;
 
       return Mission;
 
@@ -31,6 +32,7 @@
         });
         return defer.promise;
       };
+
       function getLastElement(){
         var defer = $q.defer();
         ref.orderByChild('sequence').limitToLast(1).on('value', function(snapshot){
@@ -38,7 +40,21 @@
         });
 
         return defer.promise;
-      }
+      };
+
+      function codeEditorApiCall(path, data) {
+        var devUrl = 'http://localhost:1337/api/';
+        var apiRoot = 'https://neuralquest.herokuapp.com/api/';
+
+        $.post(devUrl + path, data, function( results ) {
+          console.log(JSON.stringify(results));
+          aceService.nqConsole.log(JSON.stringify(results));
+        })
+        .fail(function() {
+          aceService.nqConsole.alert( "error" );
+        });
+      };
+
     };
 
 })();
