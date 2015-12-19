@@ -1,9 +1,7 @@
 //console.log alternative for code editor.
 var nq_gate = {
-  gateNeededEleNum: 0
+  gateNeededEleNum: 0,
 };
-
-//this function will need to be added to an answer block of a test case.
 function openGate() {
   if(nq_gate.gateNeededEleNum > 0){
     nq_gate.gateNeededEleNum -= 1;
@@ -14,25 +12,6 @@ function resetGate() {
   nq_gate.gateNeededEleNum = 0;
   // console.log('gate count reset');
 }
-
-var nqConsole = function() {
-  return({
-      log: function(msg) {
-        consoleDiv = document.getElementById('result');
-        para = document.createElement('p');
-        text = document.createTextNode(msg);
-        para.appendChild(text);
-        consoleDiv.appendChild(para);
-      },
-      alert: function(msg) {
-        consoleDiv = document.getElementById('result');
-        alert = document.createElement('code');
-        text = document.createTextNode(msg);
-        alert.appendChild(text);
-        consoleDiv.appendChild(alert);
-      }
-  });
-}();
 
 /**
  *
@@ -57,6 +36,8 @@ var nqConsole = function() {
     var ref = new Firebase(FirebaseUrl + '/NNFlat');
     var authData = ref.getAuth();
     var editorInitialized = false;
+    var questionHasBeenChecked = false;
+    var editorHasBeenChecked = false;
     
     missionCtrl.lastElement = lastEle;
     console.log('lastEl',missionCtrl.lastElement);
@@ -83,7 +64,8 @@ var nqConsole = function() {
     // missionCtrl.isAdminMode = BuildSrv.isAdminMode;
 
     function multipleChoiceChecker(answer) {
-      if (answer) {
+      if (answer && !questionHasBeenChecked) {
+        questionHasBeenChecked = true;
         openGate();
       }
     }
@@ -212,7 +194,10 @@ var nqConsole = function() {
       editor.getSession().setUndoManager(new ace.UndoManager());
       $localStorage.codeObj = '';
       missionCtrl.codeResult = '';
-      openGate();
+      if (!editorHasBeenChecked) {
+        openGate();
+        editorHasBeenChecked = true;
+      }
     }
 
     function run(testCase) {
