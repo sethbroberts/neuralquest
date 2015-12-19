@@ -164,7 +164,6 @@ function resetGate() {
     function initCodeEditor(prompt) {
       var codeEditor = document.getElementById("code-editor");
       if(codeEditor){
-        // console.log('codeeditor',codeEditor[i]);
         editor = ace.edit("code-editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
@@ -182,7 +181,6 @@ function resetGate() {
     };
 
     function reset(prompt) {
-      //initial value will come from DB later. need to fix here.
       editor.setValue(prompt, 1);
       editor.getSession().setUndoManager(new ace.UndoManager());
       $localStorage.codeObj = '';
@@ -200,23 +198,52 @@ function resetGate() {
       }
     }
 
-    function run(testCase) {
-      document.getElementById('result').innerHTML = '';
-      // console.log('aceCode script block', document.getElementsByClassName('aceCode'));
-      $('.aceCode').remove();
-      console.log('testcase', testCase);
-
+    function run(testCase, handleMethod) {
       var temp; 
       temp = $localStorage.codeObj;
-      $localStorage.codeObj = '';
+      console.log(temp);
+      if (handleMethod === 'evaluate') {
+        document.getElementById('result').innerHTML = '';
+        $('.aceCode').remove();
+        console.log('testcase', testCase);
 
-      $timeout(function(){
-        missionCtrl.codeResult = temp;
+        $localStorage.codeObj = '';
 
+        $timeout(function(){
+          missionCtrl.codeResult = temp;
+
+          appendToScript(temp);
+          appendToScript(testCase);
+
+        },100);
+      }
+      if (handleMethod === 'API') {
+        $('.aceCode').remove();
         appendToScript(temp);
-        appendToScript(testCase);
+        missionCtrl.codeResult = true;
+        $localStorage.brainData = {};
+        $localStorage.brainData = {
+          hiddenLayers: hiddenLayers,
+          trainData: trainSpecs,
+          stylized_three: stylized_three
+        }
+        console.log($localStorage.brainData);
+        console.log('trainData is ', $localStorage.brainData.trainData);
+        var trainData = $localStorage.brainData.trainData;
 
-      },100);
+        var apiRoutes = {simplenn: 'simplenn', mnist: 'mnist', convnet: 'convnet', trainRun: 'trainRun'};
+        // Validate the editor content for API call:
+        trainData.errorThresh = typeof trainData.errorThresh === 'number' ? trainData.errorThresh : alert('Input must be a number!');
+        trainData.learningRate = typeof trainData.learningRate === 'number' ? trainData.learningRate : alert('Input must be a number!');
+        trainData.iterations = typeof trainData.iterations === 'number' ? trainData.iterations : alert('Input must be a number!');
+
+        Missions.codeEditorApiCall(apiRoutes.trainRun, {
+                                                        hidden: hiddenLayers,
+                                                        errorThresh: trainData.errorThresh,
+                                                        learningRate: trainData.learningRate,
+                                                        iterations: trainData.iterations
+                                                        });
+      }
     }
 
     //append a given code to in the script tag. it will run the given code
@@ -230,9 +257,7 @@ function resetGate() {
         script.text = code;
         document.body.appendChild(script);
       }
-    }
-
-
+    };
   };
 
 })();
