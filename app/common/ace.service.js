@@ -26,5 +26,4 @@ var aceService = (function () {
       }
     }
   };
-
-})()
+})();
