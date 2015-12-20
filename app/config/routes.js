@@ -45,7 +45,7 @@ angular
           resolve: {
             requireNoAuth: function($state, Auth) {
               return Auth.$requireAuth().then(function(auth) {
-                $state.go('home');
+                $state.go('login');
               }, function(error) {
                 return;
               })
@@ -59,7 +59,7 @@ angular
           resolve: {
             auth: function($state, Users, Auth) {
               return Auth.$requireAuth().catch(function() {
-                $state.go('home');
+                $state.go('login');
               });
             },
             profile: function(Users, Auth) {
@@ -77,7 +77,7 @@ angular
           resolve: {
             auth: function($state, Users, Auth) {
               return Auth.$requireAuth().catch(function() {
-                $state.go('home');
+                $state.go('login');
               });
             },
             profile: function(Users, Auth) {
@@ -94,7 +94,7 @@ angular
           resolve: {
             auth: function($state, Users, Auth) {
               return Auth.$requireAuth().catch(function() {
-                $state.go('home');
+                $state.go('login');
               });
             }
           }
@@ -111,7 +111,7 @@ angular
           resolve: {
             auth: function($state, Users, Auth) {
               return Auth.$requireAuth().catch(function() {
-                $state.go('home');
+                $state.go('login');
               });
             },
             missionData: function(Missions, $stateParams) {
@@ -129,7 +129,7 @@ angular
           resolve: {
             auth: function($state, Users, Auth) {
               return Auth.$requireAuth().catch(function() {
-                $state.go('home');
+                $state.go('login');
               });
             }
           }
@@ -141,7 +141,7 @@ angular
           resolve: {
             auth: function($state, Users, Auth) {
               return Auth.$requireAuth().catch(function() {
-                $state.go('home');
+                $state.go('login');
               });
             },
             accordionData: function(AccordionService) {
@@ -154,7 +154,7 @@ angular
           resolve: {
             auth: function($state, Users, Auth) {
               return Auth.$requireAuth().catch(function() {
-                $state.go('home');
+                $state.go('login');
               });
             }
           }
