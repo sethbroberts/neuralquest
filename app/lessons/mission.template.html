@@ -14,7 +14,7 @@
         <!-- Shuffle Title -->
         <!-- Switch to check type and display accordingly -->
         <div ng-switch on="element.type">
-          <p class="missionsequence" ng-show="missionCtrl.isAdmin() && missionCtrl.isBuildMode()">{{element.sequence}}</p>
+          <p class="missionsequence" ng-show="missionCtrl.isAdmin() && missionCtrl.isBuildMode()">{{ element.sequence }}</p>
           <div ng-switch-when="text" class="element-text">
             <h3> {{ element.title }} </h3>
 
@@ -28,7 +28,8 @@
           </div>
 
           <div ng-switch-when="video" class="element-video">
-            <p> {{ element.mediaUrl }} (will be iFrame) </p>
+            <youtube-video video-url="element.url" player-width="'80%'" player-height="'650px'"></youtube-video>
+            <!-- <p> {{ element.mediaUrl }} (will be iFrame) </p> -->
             <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
           </div>
 
@@ -45,13 +46,13 @@
                 Answer:
                 <br />
 
-                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="a" />  {{element.answer.a}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="a" />  {{ element.answer.a }}
                 <br />
-                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="b" />  {{element.answer.b}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="b" />  {{ element.answer.b }}
                 <br />
-                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="c" ng-show="element.answer.c" />  {{element.answer.c}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="c" ng-show="element.answer.c" />  {{ element.answer.c }}
                 <br />
-                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="d" ng-show="element.answer.d" />  {{element.answer.d}}
+                <input type="radio" ng-model="answerResponse" ng-change='missionCtrl.multipleChoiceChecker(element.answer.correct === answerResponse)' value="d" ng-show="element.answer.d" />  {{ element.answer.d }}
                 <br />
               </form>
 
@@ -65,7 +66,7 @@
           </div>
 
           <div ng-switch-when="code-editor">
-            {{missionCtrl.initEditor(element.prompt)}}
+            {{ missionCtrl.initEditor(element.prompt) }}
             <div id="code-editor" class="codeeditorbox"></div>
             <div id="result" ng-show="missionCtrl.codeResult">
             </div>

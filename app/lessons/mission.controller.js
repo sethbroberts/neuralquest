@@ -28,7 +28,7 @@ function resetGate() {
   function MissionCtrl ($firebaseArray, FirebaseUrl, 
     $firebaseObject, Missions, missionData, 
     $scope, Build, Users, auth, lastEle,
-    $localStorage, $timeout, $state
+    $localStorage, $timeout, $state, $sce
     ) {
     
     var missionCtrl = this;
@@ -39,6 +39,7 @@ function resetGate() {
     var questionHasBeenChecked = false;
     var editorHasBeenChecked = false;
     
+    missionCtrl.testUrl = 'https://www.youtube.com/watch?v=t6elbnKVxpo&list=RD6AcDDc3JUJU&index=27';
     missionCtrl.lastElement = lastEle;
     console.log('lastEl',missionCtrl.lastElement);
     processSnapshot(missionData);
