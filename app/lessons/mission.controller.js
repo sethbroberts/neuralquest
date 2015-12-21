@@ -94,9 +94,15 @@ function resetGate() {
           $state.go('missionComplete');
         },100)
       } else {
-        data = data + 10;
-        refWrite.update({ currentSequence: data });
-        console.log('nextSeq',data);
+        console.log("data arg is: ", data);
+        data = data + 1;
+        ref.orderByChild('sequence').startAt(data).limitToFirst(1).on('value', function(snapshot) {
+          var element = snapshot.val();
+          for (var seq in element) {
+            refWrite.update({ currentSequence: element[seq].sequence });
+            console.log('nextSeq is now: ', element[seq].sequence);
+          }
+        });
 
         resetGate();  
       }
@@ -117,11 +123,11 @@ function resetGate() {
     };
 
     function setNextShuffle(sequence) {
-      var nextSeq = sequence + 10;
-      ref.orderByChild('sequence').equalTo(nextSeq).on('value', function(snapshot) {
+      var nextSeq = sequence + 1;
+      ref.orderByChild('sequence').startAt(nextSeq).limitToFirst(1).on('value', function(snapshot) {
         var element = snapshot.val();
-        if (element) {
-          missionCtrl.nextShuffle = element[nextSeq].shuffle;
+        for (var seq in element) {
+          missionCtrl.nextShuffle = element[seq].shuffle;
         }
       });
     };
@@ -165,10 +171,11 @@ function resetGate() {
       var codeEditor = document.getElementById("code-editor");
       if(codeEditor){
         editor = ace.edit("code-editor");
+        editor.$blockScrolling = Infinity;
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
-        editor.setValue(prompt, 1); 
-        $localStorage.codeObj = prompt;   
+        editor.setValue(prompt, 1);
+        $localStorage.codeObj = prompt;
       }
     };
 
@@ -230,12 +237,15 @@ function resetGate() {
         console.log($localStorage.brainData);
         console.log('trainData is ', $localStorage.brainData.trainData);
         var trainData = $localStorage.brainData.trainData;
-
+        // TODO: store in constants?
         var apiRoutes = {simplenn: 'simplenn', mnist: 'mnist', convnet: 'convnet', trainRun: 'trainRun'};
         // Validate the editor content for API call:
-        trainData.errorThresh = typeof trainData.errorThresh === 'number' ? trainData.errorThresh : alert('Input must be a number!');
-        trainData.learningRate = typeof trainData.learningRate === 'number' ? trainData.learningRate : alert('Input must be a number!');
-        trainData.iterations = typeof trainData.iterations === 'number' ? trainData.iterations : alert('Input must be a number!');
+        trainData.errorThresh = typeof trainData.errorThresh === 'number' ?
+          trainData.errorThresh : alert('Input must be a number!');
+        trainData.learningRate = typeof trainData.learningRate === 'number' ?
+          trainData.learningRate : alert('Input must be a number!');
+        trainData.iterations = typeof trainData.iterations === 'number' ?
+          trainData.iterations : alert('Input must be a number!');
 
         Missions.codeEditorApiCall(apiRoutes.trainRun, {
                                                         hidden: hiddenLayers,
@@ -244,7 +254,7 @@ function resetGate() {
                                                         iterations: trainData.iterations
                                                         });
       }
-    }
+    };
 
     //append a given code to in the script tag. it will run the given code
     function appendToScript(code){
