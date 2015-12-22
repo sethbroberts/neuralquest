@@ -45,7 +45,7 @@
           var user = $firebaseObject(ref.child('users').child(authData.uid));
           user.$loaded().then(function() {
             //if the user does not exsit, create one.
-            if(user.displayName === undefined){
+            if(!user.displayName){
               var newUser = {
                 /**
                   TODO:
@@ -68,6 +68,7 @@
                 newUser.displayName = authCtrl.user.fullname;
                 newUser.emailAddress = authCtrl.user.email;
                 newUser.profileImageURL = 'http://www.gravatar.com/avatar/';
+                console.log('creating a new passwrod user', newUser);
               }
 
               user.$ref().set(newUser);
