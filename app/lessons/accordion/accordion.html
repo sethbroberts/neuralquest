@@ -12,10 +12,16 @@
       <div class="col-md-4 col-sm-3 col-xs-1">
       </div>
       <div class="col-md-4 col-sm-6 col-xs-10">
-        <h3 class="text-center">
-          Your current lesson is {{accordionCtrl.currentUser.currentLesson}}
+        <br />
+        <h4 class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">
+          Your current lesson is
+        </h4>
+        <h3 class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">{{accordionCtrl.currentUser.currentLesson}}</h3>
+        <h3 class="text-center" ng-hide="accordionCtrl.currentUser.currentLesson">
+          Start learning neural network lesson.
         </h3>
-        <button ui-sref="mission({ courseName: accordionCtrl.currentUser.currentShuffle })" type="button" class="btn btn-default btn-block">
+        <uib-progressbar ng-show="accordionCtrl.currentUser.currentLesson" class="progress" value="accordionCtrl.currentUser.progress" type="success">{{accordionCtrl.currentUser.progress}}%</uib-progressbar>
+        <button ng-show="accordionCtrl.currentUser.currentLesson" ui-sref="mission({ courseName: accordionCtrl.currentUser.currentShuffle })" type="button" class="btn btn-primary center-block">
           Continue
         </button>
       </div>
@@ -25,7 +31,8 @@
 
     <div class="row">
       <br />
-      <p class="text-center">or choose a specific lesson from below.</p>
+      <p class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">or choose a specific lesson from below.</p>
+      <br />
       <h2 class="text-center">Lesson</h2>
       <h3 class="text-center">Neural Network</h3>
       <br/>
@@ -45,7 +52,7 @@
         <uib-accordion close-others="false">
             
           <div class="accordion" ng-repeat="(course, shuffles) in courses">
-            <uib-accordion-group heading="{{course}}" is-open="false">
+            <uib-accordion-group heading="{{course}}" is-open="false" panel-class="panel-default">
               <div ng-repeat="(shuffle, ele) in shuffles">
                 <div ng-click="accordionCtrl.updateUserPosition(shuffle)" ui-sref="mission({ courseName: shuffle })" class="accordionShuffleBox">
                   {{$index+1}}. <a>{{shuffle}}</a>

@@ -6,7 +6,7 @@
     .controller('AccordionCtrl', AccordionCtrl);
 
   
-  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData, Users, Auth) {
+  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData, Users, Auth, Missions) {
     var accordionCtrl = this;
     var getLessons = getLessons;
     var ref = new Firebase(FirebaseUrl + '/NNFlat');
@@ -28,19 +28,35 @@
     function init() {
       accordionCtrl.allEl = accordionData;
       accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
-      console.log(Auth.$getAuth());
+      console.log('auth in accordion',Users.getUserProfile(Auth.$getAuth().uid));
       accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid);
       accordionCtrl.currentUser.$loaded().then(function() {
-        var currSeq = accordionCtrl.currentUser.currentSequence;
+        // var currSeq = accordionCtrl.currentUser.currentSequence;
+        var currSeq = accordionCtrl.currentUser.maxSequence;
         ref.orderByChild('sequence')
            .equalTo(currSeq)
            .on('value', function(snapshot) {
              var data = snapshot.val();
+             // accordionCtrl.currentUser.currentLesson = data[currSeq].course;
+             // accordionCtrl.currentUser.currentShuffle = data[currSeq].shuffle;
              accordionCtrl.currentUser.currentLesson = data[currSeq].course;
              accordionCtrl.currentUser.currentShuffle = data[currSeq].shuffle;
            });
       });
+
+      getCurrentUserProgress(accordionCtrl.currentUser);
     };
+
+    function getCurrentUserProgress(user) {
+      Missions.getLastElement().then(function(lastEl){
+        console.log('lastelement:',lastEl);
+        console.log('current user sequence:',user.currentSequence);
+        var lastElSeq = Object.keys(lastEl)[0] || 0;
+        var userMaxSeq = user.maxSequence || 0;
+        // accordionCtrl.currentUser.progress = userSeqNum / lastElSeq;
+        accordionCtrl.currentUser.progress = Math.round((userMaxSeq / lastElSeq) * 100);
+      });
+    }
 
     function openFirstOne(index) {
       if(index === 0){
@@ -64,15 +80,30 @@
     function updateUserPosition(shuffleName) {
       var authData = userRef.getAuth();
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
-      ref.orderByChild('shuffle').equalTo(shuffleName)
-         .limitToFirst(1)
-         .on('value', function(snapshot) {
-           var element = snapshot.val();
-           for (var key in element) {
-             var data = parseInt(key);
-           }
-           refWrite.update({ currentSequence: data });
-         });
+      var currentUser = $firebaseObject(refWrite);
+      var maxSeq;
+      currentUser.$loaded().then(function() {
+        maxSeq = currentUser.maxSequence || 0;  
+        console.log('maxSeq',maxSeq);
+
+        ref.orderByChild('shuffle').equalTo(shuffleName)
+        .limitToFirst(1)
+        .on('value', function(snapshot) {
+          var element = snapshot.val();
+          for (var key in element) {
+            var currentSeq = parseInt(key);
+            if(currentSeq > maxSeq){
+              maxSeq = currentSeq;    
+            }
+          }
+          refWrite.update({
+            currentSequence: currentSeq,
+            maxSequence: maxSeq
+          });
+        });
+      })
+      
+      
     };
 
     function makeLocalObject(allElements) {

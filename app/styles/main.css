@@ -272,13 +272,16 @@ body {
   box-shadow: 1px 1px 5px #888;
 }
 .accordionStepTitle {
-  color: #2390EA;
+  /*color: #2390EA;*/
+  color: #fff;
   opacity: 50%;
 }
 
 .accordionStepBox {
+  background-color: #4A4A4A;
   padding: 10px 10px;
   border-bottom: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .accordionCoursesBox {

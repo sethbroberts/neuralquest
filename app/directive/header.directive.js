@@ -105,11 +105,14 @@
       }
       
       function isAdmin() {
-        // console.log(Auth.$getAuth());
-        // console.log('userProfile',Users.getUserProfile(Auth.$getAuth().uid));
-        if(Auth.$getAuth()){
-          var isAdmin = Users.getUserProfile(Auth.$getAuth().uid).isAdmin;
-          return isAdmin;  
+        var auth = Auth.$getAuth();
+        if(auth){
+          // console.log(Auth.$getAuth().uid);
+          // console.log(Users.getProfile(Auth.$getAuth().uid));
+          if(Users.getUserProfile(auth.uid).isAdmin){
+            var isAdmin = Users.getUserProfile(Auth.$getAuth().uid).isAdmin;
+            return isAdmin;    
+          }
         }
         return false;
       }

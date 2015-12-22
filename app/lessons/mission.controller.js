@@ -174,6 +174,7 @@ function resetGate() {
         editor.$blockScrolling = Infinity;
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
+        editor.setShowPrintMargin(false);
         editor.setValue(prompt, 1);
         $localStorage.codeObj = prompt;
       }
