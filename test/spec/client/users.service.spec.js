@@ -12,12 +12,11 @@ describe('Users.service.spec', function () {
     $q = _$q_;
   }));
 
-  describe('text', function () {
+  xdescribe('text', function () {
     var uid = 'acee391d-cbfc-4c08-a565-e2ca8729ed8f';
 
     beforeEach(function(done) {
       var displayName = Users.getDisplayName(uid, function(){
-        done();
       });
       console.log('displayName', displayName)
     });
