@@ -191,14 +191,14 @@ function resetGate() {
     function reset(prompt) {
       editor.setValue(prompt, 1);
       editor.getSession().setUndoManager(new ace.UndoManager());
-      $localStorage.codeObj = '';
+      $localStorage.codeObj = editor.getValue();
       missionCtrl.codeResult = '';
     };
 
     function showCodeAnswer(answer){
       editor.setValue(answer, 1);
       editor.getSession().setUndoManager(new ace.UndoManager());
-      $localStorage.codeObj = '';
+      $localStorage.codeObj = editor.getValue();
       missionCtrl.codeResult = '';
       if (!editorHasBeenChecked) {
         openGate();

@@ -52,7 +52,7 @@
         <uib-accordion close-others="false">
             
           <div class="accordion" ng-repeat="(course, shuffles) in courses">
-            <uib-accordion-group heading="{{course}}" is-open="false" panel-class="panel-default">
+            <uib-accordion-group heading="{{course}}" is-open="false" panel-class="panel-default" id="{{course}}">
               <div ng-repeat="(shuffle, ele) in shuffles">
                 <div ng-click="accordionCtrl.updateUserPosition(shuffle)" ui-sref="mission({ courseName: shuffle })" class="accordionShuffleBox">
                   {{$index+1}}. <a>{{shuffle}}</a>
