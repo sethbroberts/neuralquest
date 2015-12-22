@@ -3,10 +3,10 @@
 
     angular
         .module('neuralquestApp')
-        .controller('BuildCtrl', ['Build','$scope',BuildCtrl]);
+        .controller('BuildCtrl', ['Build','$scope', '$state', 'toaster',BuildCtrl]);
 
     /* @ngInject */
-    function BuildCtrl(Build, $scope, $state) {
+    function BuildCtrl(Build, $scope, $state, toaster) {
         var buildCtrl = this;
         
         buildCtrl.submitEle = submitEle;

@@ -18,7 +18,9 @@
       'ui.router',
       'ui.ace',
       'ui.bootstrap',
-      'ngStorage'
+      'ngStorage',
+      'ngAnimate',
+      'toaster'
     ])
 
     .run(["$rootScope", "$window", '$location', scrollToTop]);
