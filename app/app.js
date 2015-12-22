@@ -20,12 +20,13 @@
       'ui.bootstrap',
       'ngStorage',
       'ngAnimate',
-      'toaster'
+      'toaster',
+      'youtube-embed'
     ])
 
     .run(["$rootScope", "$window", '$location', scrollToTop]);
 
-    function scrollToTop($rootScope, $window,  $location) {
+      function scrollToTop($rootScope, $window,  $location) {
 
       $rootScope.$on('$stateChangeSuccess', function() {
          document.body.scrollTop = document.documentElement.scrollTop = 30;

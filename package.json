@@ -2,6 +2,7 @@
   "name": "angularfireslack",
   "version": "0.0.0",
   "dependencies": {
+    "angular-youtube-embed": "^1.1.1",
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "karma-chai": "^0.1.0",

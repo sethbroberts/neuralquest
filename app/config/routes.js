@@ -159,6 +159,11 @@ angular
             }
           }
         })
+        .state('frontdoor', {
+          url: '/frontdoor',
+          templateUrl: 'frontdoor/frontdoor.html',
+          controller: 'FrontdoorCtrl as fdCtrl'
+        })
         .state('resetPwd', {
           templateUrl: 'auth/resetPwd.html',
           controller: 'AuthCtrl as authCtrl'

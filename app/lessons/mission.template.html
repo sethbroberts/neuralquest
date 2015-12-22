@@ -4,7 +4,10 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <h3 class="missiontitle"> {{ missionCtrl.title }} </h3>
+      <div class="missionlocator">
+        <p><a ui-sref="accordion">{{missionCtrl.elements[missionCtrl.sequence].step}}</a> > {{missionCtrl.elements[missionCtrl.sequence].course}} <span class="missionlocatorcurrentshuffle">> {{missionCtrl.elements[missionCtrl.sequence].shuffle}}</span></p>
+      </div>
+      <h2 class="missiontitle"> {{ missionCtrl.title }} </h2>
       <!-- ng repeat -->
       <!-- <div class="col-md-1"></div> -->
       <div ng-repeat="element in missionCtrl.elements">
@@ -20,7 +23,7 @@
           </div>
 
           <div ng-switch-when="image" class="element-images">
-            <img style="width: 500px; height: 300px; display: block" ng-src=" {{element.url}} " />
+            <img style="" ng-src=" {{element.url}} " />
             <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
           </div>
 
