@@ -3,10 +3,10 @@
 
   angular
     .module('neuralquestApp')
-    .factory('Build', ['$localStorage', 'FirebaseUrl', '$q',Build]);
+    .factory('Build', ['$localStorage', 'FirebaseUrl', '$q', 'toaster',Build]);
 
   /* @ngInject */
-  function Build($localStorage, FirebaseUrl, $q) {
+  function Build($localStorage, FirebaseUrl, $q, toaster) {
     var ref = new Firebase(FirebaseUrl+'NNFlat');
 
     var service = {
@@ -29,7 +29,7 @@
 
     function updateBuild(content) {
       console.log("issertbuild fired");
-      
+      toaster.pop('success', 'the content has been successfully submitted', "");
       ref.child(content.sequence).update(content);
       //ref.save();
     }

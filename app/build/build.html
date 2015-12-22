@@ -11,7 +11,7 @@
         <div class="col-md-6 col-sm-8 col-xs-8">
           <h1 class="text-center">Edit Content</h1>
           <br />
-          <form ng-submit="buildCtrl.submitEle()">
+          <form ng-submit="buildCtrl.submitEle()" name="buildSubmitForm">
             <div class="form-group">
               <label for="sel1">Update or Create</label>
               <select ng-model="buildCtrl.editMode" class="form-control" id="sel1">
@@ -23,7 +23,6 @@
             <div ng-show="buildCtrl.editMode === 'build'" class="form-group">
               <label for="sel1">Select Element Type</label>
               <select ng-model="buildCtrl.build.type" class="form-control" id="sel1">
-                <option></option>
                 <option>text</option>
                 <option>image</option>
                 <option>code</option>
@@ -36,19 +35,19 @@
             </div>
             <div class="form-group" ng-show="buildCtrl.build">
               <label>Sequence #</label>
-              <input type="number" class="form-control" placeholder="sequence#" ng-model="buildCtrl.build.sequence">
+              <input type="number" class="form-control" placeholder="sequence#" ng-model="buildCtrl.build.sequence" required>
             </div>
             <div class="form-group" ng-show="buildCtrl.build">
             <label>Step</label>
-              <input type="text" class="form-control" placeholder="step" ng-model="buildCtrl.build.step">
+              <input type="text" class="form-control" placeholder="step" ng-model="buildCtrl.build.step"  required>
             </div>
             <div class="form-group" ng-show="buildCtrl.build">
             <label>Course</label>
-              <input type="text" class="form-control" placeholder="course" ng-model="buildCtrl.build.course">
+              <input type="text" class="form-control" placeholder="course" ng-model="buildCtrl.build.course"  required>
             </div>
             <div class="form-group" ng-show="buildCtrl.build" >
               <label>Shuffle</label>
-              <input type="text" class="form-control" placeholder="shuffle" ng-model="buildCtrl.build.shuffle">
+              <input type="text" class="form-control" placeholder="shuffle" ng-model="buildCtrl.build.shuffle"  required>
             </div>
             <div class="form-group" ng-show="buildCtrl.build.type === 'image'">
               <label>URL</label>
@@ -58,6 +57,13 @@
               <label>Content</label>
               <textarea rows="10" class="form-control" placeholder="content" ng-model="buildCtrl.build.content"></textarea>
             </div>
+            <div class="form-group" ng-show="(buildCtrl.build.type === 'code-editor')">
+              <label>Code-editor handling type</label>
+              <select class="form-control" ng-model="buildCtrl.build.handling">
+                <option>evaluate</option>
+                <option>API</option>
+              </select>
+            </div>
             <div class="form-group" ng-show="(buildCtrl.build.type === 'code-editor' || buildCtrl.build.type === 'question')">
               <label>Prompt</label>
               <textarea class="form-control" placeholder="prompt" rows="4" ng-model="buildCtrl.build.prompt"></textarea>
@@ -66,7 +72,7 @@
               <label>Answer for code challenge</label>
               <textarea class="form-control" placeholder="answer" rows="10" ng-model="buildCtrl.build.answer"></textarea>
             </div>
-            <div class="form-group" ng-show="buildCtrl.build.type === 'code-editor'">
+            <div class="form-group" ng-show="buildCtrl.build.type === 'code-editor' && buildCtrl.build.handling === 'evaluate'">
               <label>Test Cases</label>
               <textarea class="form-control" placeholder="test cases" rows="10" ng-model="buildCtrl.build.testCase"></textarea>
             </div>
@@ -79,11 +85,12 @@
               <label>Correct Response for Question (a, b, c, or d)</label>
               <input type="text" class="form-control" placeholder="enter letter of correct choice" ng-model="buildCtrl.build.answer.correct">
             </div>
-            <input ng-show="buildCtrl.build" class="btn btn-primary form-control" type="submit">
+            <input ng-show="buildCtrl.build" class="btn btn-primary form-control" type="submit" ng-disabled="buildSubmitForm.$invalid">
           </form> 
           <!-- build type: {{buildCtrl.build}} -->
 
         </div>
+        <toaster-container toaster-options="{'position-class':'toast-bottom-right'}"></toaster-container>
         <div class="col-md-3 col-sm-2 col-xs-2">
         </div>
       </div>
