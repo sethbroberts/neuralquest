@@ -34,7 +34,7 @@
       function getProfile(uid) {
         return $firebaseObject(usersRef.child(uid));
       }
-      function getDisplayName(uid) {
+      function getDisplayName(uid, callback) {
 
         return users.$getRecord(uid).displayName;
       }

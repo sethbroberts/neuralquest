@@ -81,6 +81,16 @@
             <ul>{{ element.content }}</ul>
               <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
           </div>
+
+          <div ng-switch-when="line-graph" class="element-line-graph">
+            <h3>{{ element.title }}</h3>
+         
+            <canvas id="line" class="chart chart-line" chart-data="element.data"
+              chart-labels="element.labels" chart-legend="true" chart-series="element.series" chart-click="lineCtrl.onClick">
+            </canvas> 
+ 
+          </div>
+
         </div>
       </div><!-- END ng-repeat -->
       <button ng-show="!missionCtrl.gate.gateNeededEleNum" class="nextbotton btn btn-default btn-large" ui-sref="mission({ courseName: missionCtrl.nextShuffle })" ng-click="missionCtrl.saveElement( missionCtrl.sequence )">Next Lesson</button>

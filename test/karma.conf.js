@@ -36,9 +36,10 @@ module.exports = function(config) {
       'bower_components/ngstorage/ngStorage.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/AngularJS-Toaster/toaster.js',
+      'bower_components/Chart.js/Chart.js',
+      'bower_components/angular-chart.js/dist/angular-chart.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/mockfirebase/browser/mockfirebase.js',
-      'node_modules/angular-youtube-embed/src/angular-youtube-embed.js',
       // endbower
       // 'app/scripts/**/*.js',
       'test/mock/**/*.js',
@@ -46,6 +47,7 @@ module.exports = function(config) {
       //out app code
       'app/*.js',
       'app/**/*.js',
+      'app/**/**/*.js',
 
       //spec files
       'test/spec/**/*.js'
