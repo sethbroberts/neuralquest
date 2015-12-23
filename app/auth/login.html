@@ -5,64 +5,59 @@
   <div class="homeimagebox">
     <img class="homeimage" src="images/neuralnetwork_background.jpg" alt="">
   </div>
-</div>
-  <!-- main content -->
-  <!-- <div class="row homecontentbox"> -->
-    <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
-      <!-- <div class="row"> -->
-        <!-- <div class="col-md-4 col-sm-2 col-xs-1"></div> -->
-        
-        <!-- <div class="col-md-4 col-sm-8 col-xs-10 maincontentwrapper"> -->
-        <div class="maincontentwrapper">
-          <h3 class="text-center">Learn Neural Network from your Browser</h3>
-          <h4 class="text-center">Login and continue learning</h4>
-          <div ng-show="authCtrl.error">
-            <span>{{ authCtrl.error.message }}</span>
-          </div>
+ </div>
 
-          <div class="loginformbox col-centered">
-            <form ng-submit="authCtrl.login()">
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" ng-model="authCtrl.user.email">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" ng-model="authCtrl.user.password">
-              </div>
-              <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In">
-            </form> 
-          
-          <p class="text-center top-buffer">
-            Or sign in with your Google or Facebook account
-          </p>
-          <a class="btn btn-social btn-google btn-lg btn-block" ng-click="authCtrl.loginWithGoogle();">
-            <span class="btn-block fa fa-google"></span> Sign in with Google
-          </a>
-          <a class="btn btn-social btn-facebook btn-lg btn-block" ng-click="authCtrl.loginWithFacebook();">
-            <span class="fa fa-facebook"></span> Sign in with Facebook
-          </a>
-          <br />
-          </div>
-          <a href="#" ui-sref="signup" ng-click="authCtrl.loginBtnToggle();"><h4 class="text-center top-buffer">Create an account?</h1></a>
-          <a href="#" ui-sref="resetPwd" ng-click="authCtrl.loginBtnToggle();"><h4 class="text-center top-buffer">Forgot your password?</h1></a>
-        </div>
-        <!-- <div class="col-md-4 col-sm-2 col-xs-1"></div> -->
-      <!-- </div> -->
-    <!-- </div> -->
-  <!-- </div> -->
-  <div class="container-fluid mainvideowrapper">
-    <div class="col-md-6 col-sm-6 mainvideotext">
-      <h3>What is netral network?</h3>
-      <p>"Neural networks are mathematical models <br/> that can exhibit many remarkable behaviors, <br/>such as the ability to learn based on experience."</p>
-      <h3>Why you might be interested in learning it?</h3>
-      <p>"a paragraph that is very impressive</p>
-    </div>
-    <div class="col-md-6 col-sm-6">
+<div class="row homepagewrapper">
+  <div class="hometitle">
+    <h1 class="text-center">Learn Neural Network from your Browser</h1>
+  </div>
+    
+  <div class="col-md-6 col-sm-6 ">
+    <div class="mainvideowrapper">
+      <h3 class="text-center">What is netral network?</h3>
+      <p class="text-center">"Neural networks are mathematical models <br/> that can exhibit many remarkable behaviors, <br/>such as the ability to learn based on experience."</p>
       <div class="frontdoorwrapper">
         <div class="embed-responsive embed-responsive-16by9">  
-          <youtube-video class="embed-responsive-item" video-id="authCtrl.frontDoorVideo"></youtube-video>
+          <youtube-video class="embed-responsive-item" video-url="authCtrl.frontDoorVideo"></youtube-video>
         </div>
       </div>
     </div>
   </div>
+        
+  <div class="col-md-6 col-sm-6">
+    <div class="maincontentwrapper">
+      
+      <h4 class="text-center">Login and continue learning</h4>
+      <div ng-show="authCtrl.error">
+        <span>{{ authCtrl.error.message }}</span>
+      </div>
 
+      <div class="loginformbox col-centered">
+        <form ng-submit="authCtrl.login()">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" ng-model="authCtrl.user.email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" ng-model="authCtrl.user.password">
+          </div>
+          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In">
+        </form> 
+      
+      <p class="text-center top-buffer">
+        Or sign in with your Google or Facebook account
+      </p>
+      <a class="btn btn-social btn-google btn-lg btn-block" ng-click="authCtrl.loginWithGoogle();">
+        <span class="btn-block fa fa-google"></span> Sign in with Google
+      </a>
+      <a class="btn btn-social btn-facebook btn-lg btn-block" ng-click="authCtrl.loginWithFacebook();">
+        <span class="fa fa-facebook"></span> Sign in with Facebook
+      </a>
+      <br />
+      </div>
+      <a href="#" ui-sref="signup" ng-click="authCtrl.loginBtnToggle();"><h4 class="text-center top-buffer">Create an account?</h1></a>
+      <a href="#" ui-sref="resetPwd" ng-click="authCtrl.loginBtnToggle();"><h4 class="text-center top-buffer">Forgot your password?</h1></a>
+    </div>
+  </div>
+    
 </div>
+
