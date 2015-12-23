@@ -33,3 +33,4 @@ describe('auth.controller.spec', function () {
       expect(typeof AuthCtrl.resetPwd).toBe("function");
     });
   });
+});

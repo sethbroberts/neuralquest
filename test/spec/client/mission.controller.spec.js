@@ -80,4 +80,3 @@ describe('Missions.controller.spec', function () {
     //firebase related
   });
 });
-Status API Training Shop Blog About Pricing
