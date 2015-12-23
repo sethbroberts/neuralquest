@@ -177,6 +177,11 @@ function resetGate() {
         editor.getSession().setMode("ace/mode/javascript");
         editor.setShowPrintMargin(false);
         editor.setValue(prompt, 1);
+        editor.setOptions({
+          maxLines: 100,
+          minLines: 10,
+          autoScrollEditorIntoView: true
+        })
         $localStorage.codeObj = prompt;
       }
     };

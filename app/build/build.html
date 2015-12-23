@@ -25,6 +25,7 @@
               <select ng-model="buildCtrl.build.type" class="form-control" id="sel1">
                 <option>text</option>
                 <option>image</option>
+                <option>video</option>
                 <option>code</option>
                 <option>code-editor</option>
                 <option>question</option>
@@ -49,7 +50,7 @@
               <label>Shuffle</label>
               <input type="text" class="form-control" placeholder="shuffle" ng-model="buildCtrl.build.shuffle"  required>
             </div>
-            <div class="form-group" ng-show="buildCtrl.build.type === 'image'">
+            <div class="form-group" ng-show="buildCtrl.build.type === 'image' || buildCtrl.build.type === 'video'">
               <label>URL</label>
               <input type="text" class="form-control" placeholder="url" ng-model="buildCtrl.build.url">
             </div>
