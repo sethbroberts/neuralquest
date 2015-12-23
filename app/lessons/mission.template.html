@@ -16,7 +16,7 @@
         <div ng-switch on="element.type">
           <p class="missionsequence" ng-show="missionCtrl.isAdmin() && missionCtrl.isBuildMode()">{{ element.sequence }}</p>
           <div ng-switch-when="text" class="element-text">
-            <h3> {{ element.title }} </h3>
+            <h3 class="title"> {{ element.title }} </h3>
 
             <div ng-bind-html="element.content"></div>
             <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
@@ -83,7 +83,7 @@
           </div>
 
           <div ng-switch-when="line-graph" class="element-line-graph">
-            <h3>{{ element.title }}</h3>
+            <h3 class="title">{{ element.title }}</h3>
          
             <canvas id="line" class="chart chart-line" chart-data="element.data"
               chart-labels="element.labels" chart-legend="true" chart-series="element.series" chart-click="lineCtrl.onClick">
