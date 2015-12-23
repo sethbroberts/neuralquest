@@ -33,15 +33,3 @@ describe('auth.controller.spec', function () {
       expect(typeof AuthCtrl.resetPwd).toBe("function");
     });
   });
-<<<<<<< 18bd33da74eee07c1794869618741b27db241b4f
-  
-
-=======
-
-  describe('method unit tests', function () {
-    //come up with methods unit test here
-  });
-
-  
-});
->>>>>>> Finish merge

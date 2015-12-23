@@ -28,10 +28,6 @@
     function init() {
       accordionCtrl.allEl = accordionData;
       accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
-<<<<<<< bb2fcf0795056f0b0680f3aae9e45341de53c155
-=======
-      console.log(Auth.$getAuth());
->>>>>>> Finish merge
       accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid);
       accordionCtrl.currentUser.$loaded().then(function() {
         // var currSeq = accordionCtrl.currentUser.currentSequence;
