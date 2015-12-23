@@ -19,6 +19,7 @@
         password: ''
       };
 
+
       authCtrl.login = login;
       authCtrl.register = register;
       authCtrl.loginWithFacebook = loginWithFacebook;
@@ -26,7 +27,7 @@
       authCtrl.loginBtnToggle = loginBtnToggle;
       authCtrl.init = init;
       authCtrl.resetPwd = resetPwd;
-
+      authCtrl.frontDoorVideo = 'CINU_TiYhA8'
       authCtrl.init();
       /*=============================================
       =            METHOD IMPLEMENTATION            =
