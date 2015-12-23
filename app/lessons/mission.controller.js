@@ -95,7 +95,7 @@ function resetGate() {
           $state.go('missionComplete');
         },100)
       } else {
-        console.log("data arg is: ", data);
+        // console.log("data arg is: ", data);
         data = data + 1;
         ref.orderByChild('sequence').startAt(data).limitToFirst(1).on('value', function(snapshot) {
           var element = snapshot.val();
@@ -207,7 +207,7 @@ function resetGate() {
       }
     }
 
-    function run(testCase, handleMethod) {
+    function run(testCase, handleMethod, apiRoute) {
       var temp; 
       temp = $localStorage.codeObj;
       console.log(temp);
@@ -228,37 +228,50 @@ function resetGate() {
       }
       if (handleMethod === 'API') {
         $('.aceCode').remove();
+        appendToScript('var require = function(){ return {NeuralNetwork: function(){ return { train: function(){} } } } };');
         appendToScript(temp);
+        // console.log("temp is: ", temp)
         missionCtrl.codeResult = true;
-        $localStorage.brainData = {};
-        $localStorage.brainData = {
-          hiddenLayers: hiddenLayers,
-          trainData: trainSpecs,
-          stylized_three: stylized_three
-        }
-        console.log($localStorage.brainData);
-        console.log('trainData is ', $localStorage.brainData.trainData);
-        var trainData = $localStorage.brainData.trainData;
-        // TODO: store in constants?
-        var apiRoutes = {simplenn: 'simplenn', mnist: 'mnist', convnet: 'convnet', trainRun: 'trainRun'};
-        // Validate the editor content for API call:
-        trainData.errorThresh = typeof trainData.errorThresh === 'number' ?
-          trainData.errorThresh : alert('Input must be a number!');
-        trainData.learningRate = typeof trainData.learningRate === 'number' ?
-          trainData.learningRate : alert('Input must be a number!');
-        trainData.iterations = typeof trainData.iterations === 'number' ?
-          trainData.iterations : alert('Input must be a number!');
 
-        Missions.codeEditorApiCall(apiRoutes.trainRun, {
-                                                        hidden: hiddenLayers,
-                                                        errorThresh: trainData.errorThresh,
-                                                        learningRate: trainData.learningRate,
-                                                        iterations: trainData.iterations
-                                                        });
+        // Without this line then brainData will always be undefined!!
+        var brainData = window.brainData;
+
+        // Validate user input and/or provide null (which the server will deal with as default vals)
+        if (brainData) {
+          brainData.errorThresh = typeof brainData.errorThresh === 'number' ? brainData.errorThresh : null;
+          brainData.iterations = typeof brainData.iterations === 'number' ? brainData.iterations : null;
+          brainData.log = brainData.log === undefined ? null : typeof brainData.log === 'boolean' ? brainData.log : null;
+          brainData.logPeriod = typeof brainData.logPeriod === 'number' ? brainData.logPeriod : null;
+          brainData.learningRate = typeof brainData.learningRate === 'number' ? brainData.learningRate : null;
+          brainData.momentum = typeof brainData.momentum === 'number' ? brainData.momentum : null;
+          brainData.binaryThresh = typeof brainData.binaryThresh === 'number' ? brainData.binaryThresh : null;
+        } else {
+          var brainData = {
+            errorThresh: null,
+            iterations: null,
+            log: null,
+            logPeriod: null,
+            learningRate: null,
+            momentum: null,
+            binaryThresh: null
+          }
+        }
+
+        Missions.codeEditorApiCall(apiRoute, {
+                                              hiddenLayers: hiddenLayers,
+                                              data: data,
+                                              errorThresh: brainData.errorThresh,
+                                              iterations: brainData.iterations,
+                                              log: brainData.log,
+                                              logPeriod: brainData.logPeriod,
+                                              learningRate: brainData.learningRate,
+                                              momentum: brainData.momentum,
+                                              binaryThresh: brainData.binaryThresh
+                                             });
       }
     };
 
-    //append a given code to in the script tag. it will run the given code
+    // Append given code in a script tag which will run the given code:
     function appendToScript(code){
       var script = document.createElement('script');
       script.setAttribute('class', 'aceCode');
@@ -273,3 +286,4 @@ function resetGate() {
   };
 
 })();
+

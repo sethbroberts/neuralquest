@@ -43,10 +43,11 @@
       };
 
       function codeEditorApiCall(path, data) {
-        var devUrl = 'http://localhost:1337/api/';
-        var apiRoot = 'https://neuralquest.herokuapp.com/api/';
+        // Switch to devUrl in the POST req below when developing (and running the API server locally)
+        var devUrl = 'http://localhost:1337';
+        var apiRoot = 'https://neuralquest.herokuapp.com';
 
-        $.post(devUrl + path, data, function( results ) {
+        $.post(apiRoot + path, data, function( results ) {
           console.log(JSON.stringify(results));
           aceService.nqConsole.log(JSON.stringify(results));
         })
