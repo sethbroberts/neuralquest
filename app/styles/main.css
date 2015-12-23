@@ -370,41 +370,43 @@ body {
   color: #fff;
   margin: 10% 10%;
   padding: 0 10%;
-  /*border-radius: 10px;*/
-  /*padding: 10px 30px 30px 30px;*/
+  padding-top:70px;
 }
 .hometitle {
   padding: 5px 5px 15px 5px;
-  background-color: rgba(0,0,0,0.2)
 }
 .mainvideowrapper {
   color: #fff;
   margin: 10% 10%;
   padding-bottom: 80px;
-  /*margin-bottom: 80px;*/
-  /*border-radius: 10px;*/
-  /*padding: 10px 30px 30px 30px;*/
+}
+.signupcontentwrapper {
+  color: #fff;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  margin-top: -50px;
+}
+.hometitle {
+  padding: 5px 5px 15px 5px;
+  /*background-color: rgba(0,0,0,0.2)*/
 }
 .homepagewrapper {
   color: #fff;
   /*padding-top: -80px;*/
   margin-top: 20px;
-  background-color: rgba(0,0,0,0.2);
-  /*padding-bottom:20%;*/
-  /*margin-bottom: 20px;*/
+  background-color: rgba(0,0,0,0.3);
   height: 100%;
   min-height: 100%;
-}
-.mainvideotext {
-  text-align: right;
-  padding-right: 20px;
 }
 .frontdoorwrapper {
   padding-top: 10px;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+  max-width: 550px;
+  margin: 0 auto;
 }
-
 .frontdoorwrapper h3 {
   padding-bottom: 15px;
 }

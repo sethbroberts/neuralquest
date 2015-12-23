@@ -1,3 +1,4 @@
+
 /* global YT */
 angular.module('youtube-embed', ['ng'])
 .service ('youtubeEmbedUtils', ['$window', '$rootScope', function ($window, $rootScope) {
@@ -37,7 +38,7 @@ angular.module('youtube-embed', ['ng'])
             id = id.split('#')[0];
         }
 
-        return id;
+        return id+"?rel=0";
     };
 
     Service.getTimeFromURL = function getTimeFromURL(url) {
