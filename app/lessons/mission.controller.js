@@ -69,8 +69,14 @@ function resetGate() {
         questionHasBeenChecked = true;
         openGate();
       }
-    }
+    };
 
+    $scope.$watch('sequence', function(newVal, oldVal){
+      console.log('hello');
+      $timeout(function(){
+        Prism.highlightAll();  
+      }, 100);
+    });
 
     /*=============================================
     =            METHOD IMPLEMENTATION            =
@@ -105,7 +111,7 @@ function resetGate() {
           }
         });
 
-        resetGate();  
+        resetGate();
       }
     };
 
