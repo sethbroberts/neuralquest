@@ -502,6 +502,7 @@ img{
 
 .element-video { 
   max-width: 600px;
+  margin: 20px 0;
 }
 .element-video iframe {
   
