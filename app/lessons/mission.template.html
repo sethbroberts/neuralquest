@@ -29,6 +29,7 @@
 
           <div ng-switch-when="video" class="element-video">
             <youtube-video video-url="element.url" player-width="'80%'" player-height="'650px'"></youtube-video>
+            <nq-youtube class="" nq-videoid="authCtrl.nqVideoId"></nq-youtube>
             <!-- <p> {{ element.mediaUrl }} (will be iFrame) </p> -->
             <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
           </div>

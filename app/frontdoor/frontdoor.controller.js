@@ -9,5 +9,6 @@
     function FrontdoorCtrl() {
         var fdCtrl = this;
         fdCtrl.frontDoorVideo = 'CINU_TiYhA8'
+        fdCtrl.nqVideoId = 'CINU_TiYhA8'
     }
 })();
