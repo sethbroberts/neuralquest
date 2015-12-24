@@ -471,6 +471,9 @@ img{
   padding-bottom:2em;
   /*margin: 0 auto;*/
 }
+.element-code {
+  text-align: left;
+}
 .element-images img {
   max-width: 100%;
   height: auto;
