@@ -233,7 +233,8 @@ function resetGate() {
       }
       if (handleMethod === 'API') {
         $('.aceCode').remove();
-        appendToScript('var require = function(){ return {NeuralNetwork: function(){ return { train: function(){} } } } };');
+        appendToScript('var require = function(){ return {NeuralNetwork: function(){ return { train: function(){} } } } }; \
+                        var data = data || null');
         appendToScript(temp);
         // console.log("temp is: ", temp)
         missionCtrl.codeResult = true;
@@ -264,7 +265,7 @@ function resetGate() {
 
         Missions.codeEditorApiCall(apiRoute, {
                                               hiddenLayers: hiddenLayers,
-                                              data: data,
+                                              data: data || null,
                                               errorThresh: brainData.errorThresh,
                                               iterations: brainData.iterations,
                                               log: brainData.log,
