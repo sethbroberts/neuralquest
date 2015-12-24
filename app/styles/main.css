@@ -270,7 +270,7 @@ body {
   border: 1px solid #aaa;
   border-radius: 3px;
   padding: 5px 5px;
-  box-shadow: 1px 1px 5px #888;
+  /*box-shadow: 1px 1px 5px #888;*/
 }
 .accordionStepTitle {
   /*color: #2390EA;*/
@@ -368,7 +368,7 @@ body {
 }
 .maincontentwrapper {
   color: #fff;
-  margin: 10% 10%;
+  margin: 1% 10%;
   padding: 0 10%;
   padding-top:70px;
 }
@@ -467,11 +467,13 @@ img{
 }
 
 .element-images {
-  max-width: 60%;
+  max-width: 700px;
   padding-bottom:2em;
-  display: block;
-  height:auto;
-  vertical-align: middle;
+  /*margin: 0 auto;*/
+}
+.element-images img {
+  max-width: 100%;
+  height: auto;
 }
 .missionlocator {
   color: #999;
@@ -496,9 +498,18 @@ img{
 }
 
 .element-video { 
-  text-align: center; 
+  max-width: 600px;
 }
-
+.element-video iframe {
+  
+}
+.welcomebox {
+  background-color: #E9E9E9;
+  margin: 0 -40px;
+  padding-top: 20px;
+  padding-bottom:20px;
+  margin-bottom: 20px;
+}
 
 /*----------------------------------------------------------*/
 /*                       Ace Style Classes                  */

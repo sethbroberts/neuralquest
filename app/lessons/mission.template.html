@@ -19,24 +19,20 @@
             <h3 class="title"> {{ element.title }} </h3>
 
             <div ng-bind-html="element.content"></div>
-            <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
           </div>
 
           <div ng-switch-when="image" class="element-images">
-            <img style="" ng-src=" {{element.url}} " />
-            <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
+            <img style="max-width:100%, max-height:100%" style="" ng-src=" {{element.url}} " />
           </div>
 
           <div ng-switch-when="video" class="element-video">
-            <youtube-video video-url="element.url" player-width="'80%'" player-height="'650px'"></youtube-video>
-            <nq-youtube class="" nq-videoid="authCtrl.nqVideoId"></nq-youtube>
-            <!-- <p> {{ element.mediaUrl }} (will be iFrame) </p> -->
-            <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
+            <div class="embed-responsive embed-responsive-16by9">
+            <nq-youtube class="embed-responsive-item" nq-videoid="element.url"></nq-youtube>
+            </div>
           </div>
 
           <div ng-switch-when="code" class="element-code">
             <pre> {{ element.content }} </pre>
-            <!-- <button class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Continue</button> -->
           </div>
 
           <div ng-switch-when="question" class="element-question">
@@ -57,11 +53,9 @@
                 <br />
               </form>
 
-              <!-- <button ng-show="element.answer.correct === response" class="btn btn-default btn-large" ng-click="missionCtrl.saveElement( element.sequence )">Great Job - Continue</button> -->
               <code ng-show="answerResponse && element.answer.correct !== answerResponse">Try Again!</code>
               <code ng-show="answerResponse && element.answer.correct === answerResponse">Great Job!</code>
 
-              <!-- {{missionCtrl.answerResponse}} -->
             </div>
 
           </div>

@@ -27,7 +27,7 @@
       authCtrl.loginBtnToggle = loginBtnToggle;
       authCtrl.init = init;
       authCtrl.resetPwd = resetPwd;
-      authCtrl.nqVideoId = 'http://www.youtube.com/embed/CINU_TiYhA8'
+      authCtrl.nqVideoId = 'https://www.youtube.com/embed/CINU_TiYhA8?rel=0'
 
       authCtrl.init();
       /*=============================================
