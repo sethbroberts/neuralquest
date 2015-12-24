@@ -12,7 +12,7 @@ var aceService = (function () {
     return {
       log: function(msg) {
         consoleDiv = document.getElementById('result');
-        para = document.createElement('p');
+        para = document.createElement('pre');
         text = document.createTextNode(msg);
         para.appendChild(text);
         consoleDiv.appendChild(para);

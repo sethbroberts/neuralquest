@@ -49,7 +49,10 @@
 
         $.post(apiRoot + path, data, function( results ) {
           console.log(JSON.stringify(results));
-          aceService.nqConsole.log(JSON.stringify(results));
+          var errorAndIterations = results.result.answer[0];
+          console.log('errorAndIterations is ', errorAndIterations);
+          var toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
+          aceService.nqConsole.log(toDisplay);
         })
         .fail(function() {
           aceService.nqConsole.alert( "error" );
