@@ -38,11 +38,7 @@ function resetGate() {
     var editorInitialized = false;
     var questionHasBeenChecked = false;
     var editorHasBeenChecked = false;
-<<<<<<< f191fed55214212296c116fe1746c1fbb977c71f
-    
-=======
 
->>>>>>> Removes git conflict markers.
     missionCtrl.testUrl = 'https://www.youtube.com/watch?v=t6elbnKVxpo&list=RD6AcDDc3JUJU&index=27';
     missionCtrl.lastElement = lastEle;
     console.log('lastEl',missionCtrl.lastElement);
