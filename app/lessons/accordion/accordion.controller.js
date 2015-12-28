@@ -30,16 +30,21 @@
       accordionCtrl.track = makeLocalObject(accordionCtrl.allEl);
       accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid);
       accordionCtrl.currentUser.$loaded().then(function() {
-        // var currSeq = accordionCtrl.currentUser.currentSequence;
-        var currSeq = accordionCtrl.currentUser.maxSequence;
+        var currSeq = accordionCtrl.currentUser.currentSequence;
+        var maxSeq = accordionCtrl.currentUser.maxSequence;
         ref.orderByChild('sequence')
            .equalTo(currSeq)
            .on('value', function(snapshot) {
              var data = snapshot.val();
-             // accordionCtrl.currentUser.currentLesson = data[currSeq].course;
-             // accordionCtrl.currentUser.currentShuffle = data[currSeq].shuffle;
              accordionCtrl.currentUser.currentLesson = data[currSeq].course;
              accordionCtrl.currentUser.currentShuffle = data[currSeq].shuffle;
+           });
+        ref.orderByChild('sequence')
+           .equalTo(maxSeq)
+           .on('value', function(snapshot) {
+             var data = snapshot.val();
+             accordionCtrl.currentUser.maxLesson = data[maxSeq].course;
+             accordionCtrl.currentUser.maxShuffle = data[maxSeq].shuffle;
            });
       });
 
@@ -83,7 +88,7 @@
       var maxSeq;
       currentUser.$loaded().then(function() {
         maxSeq = currentUser.maxSequence || 0;  
-        console.log('maxSeq',maxSeq);
+        // console.log('maxSeq',maxSeq);
 
         ref.orderByChild('shuffle').equalTo(shuffleName)
         .limitToFirst(1)

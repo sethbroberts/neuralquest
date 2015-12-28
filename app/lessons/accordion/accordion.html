@@ -9,32 +9,56 @@
       <h2 class="text-center">
           Welcome<span>, {{accordionCtrl.currentUser.displayName}}</span>
       </h2>
-      <div class="col-md-4 col-sm-3 col-xs-1">
+      <div class="col-md-2 col-sm-1 col-xs-1">
       </div>
-      <div class="col-md-4 col-sm-6 col-xs-10">
-        <br />
-        <h4 class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">
-          Your current lesson is
-        </h4>
-        <h3 class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">{{accordionCtrl.currentUser.currentLesson}}</h3>
-        <h3 class="text-center" ng-hide="accordionCtrl.currentUser.currentLesson">
-          Start learning neural network lesson.
-        </h3>
-        <uib-progressbar ng-show="accordionCtrl.currentUser.currentLesson" class="progress" value="accordionCtrl.currentUser.progress" type="success">{{accordionCtrl.currentUser.progress}}%</uib-progressbar>
-        <button ng-show="accordionCtrl.currentUser.currentLesson" ui-sref="mission({ courseName: accordionCtrl.currentUser.currentShuffle })" type="button" class="btn btn-primary center-block">
-          Continue
-        </button>
-        <br />
-        <p class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">or choose a specific lesson from below.</p>
-        <br />
+      <div class="col-md-8 col-sm-10 col-xs-10">
+        <div class="row">
+          <div class="col-md-3 col-sm-2 col-xs-1"></div>
+          <div class="col-md-6 col-sm-8 col-xs-10">
+            <p class="text-center">Your progress</p>
+            <uib-progressbar ng-show="accordionCtrl.currentUser.currentLesson" class="progress" value="accordionCtrl.currentUser.progress" type="success">{{accordionCtrl.currentUser.progress}}%</uib-progressbar>
+          </div>
+          <div class="col-md-3 col-sm-2 col-xs-1"></div>
+        </div>
+        <div class="row" ng-show="accordionCtrl.currentUser.maxLesson">
+          <div class="col-md-5 lastLessonBox lessonBox">
+            <h4 class="text-center">
+              Your last lesson was
+            </h4>
+            <h3 class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">{{accordionCtrl.currentUser.currentLesson}}</h3>
+            <br/>
+            <button ui-sref="mission({ courseName: accordionCtrl.currentUser.currentShuffle })" type="button" class="btn btn-primary center-block">
+              Continue
+            </button>
+          </div>
+          <div class="col-md-5 col-md-offset-2 currentLessonBox lessonBox">
+            <h4 class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">
+              Your farthest lesson was
+            </h4>
+            <h3 class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">{{accordionCtrl.currentUser.maxLesson}}</h3>
+            <br/>
+            <button ui-sref="mission({ courseName: accordionCtrl.currentUser.maxShuffle })" type="button" class="btn btn-primary center-block">
+              Continue
+            </button>
+          </div>
+          <br/>
+          <p class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">or choose a specific lesson from below.</p>
+        </div>
+        <div ng-hide="accordionCtrl.currentUser.maxLesson">
+          <h3 class="text-center" >
+            Start learning neural network lesson.
+          </h3>
+        </div>
+        </div>
+        
       </div>
-      <div class="col-md-4 col-sm-3 col-xs-1">
+      <div class="col-md-8 col-sm-1 col-xs-1">
       </div>
     </div>
 
     <div class="row">
-      <h2 class="text-center">Lesson</h2>
-      <h3 class="text-center">Neural Network</h3>
+      <!-- <h2 class="text-center">Lesson</h2> -->
+      <!-- <h3 class="text-center">Neural Network</h3> -->
       <br/>
     </div>
     <div class="col-md-1 col-sm-1"></div>
