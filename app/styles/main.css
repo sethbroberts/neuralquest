@@ -394,11 +394,12 @@ body {
 }
 .homepagewrapper {
   color: #fff;
-  /*padding-top: -80px;*/
+  /*padding-top: 200px;*/
+  /*padding-bottom: 300px;*/
   margin-top: 20px;
-  background-color: rgba(0,0,0,0.3);
-  height: 100%;
-  min-height: 100%;
+  /*background-color: rgba(0,0,0,0.3);*/
+  height: 200%;
+  min-height: 200%;
 }
 .frontdoorwrapper {
   padding-top: 10px;
@@ -469,7 +470,7 @@ img{
 .element-images {
   max-width: 700px;
   padding-bottom:2em;
-  /*margin: 0 auto;*/
+  margin: 0 auto;
 }
 .element-code {
   text-align: left;
@@ -477,6 +478,8 @@ img{
 .element-images img {
   max-width: 100%;
   height: auto;
+  margin: 0 auto;
+  display: block;
 }
 .missionlocator {
   color: #999;
@@ -502,20 +505,54 @@ img{
 
 .element-video { 
   max-width: 600px;
+  margin: 20px 0;
 }
 .element-video iframe {
   
 }
 .welcomebox {
   background-color: #E9E9E9;
+  /*background-color: #393939;*/
   margin: 0 -40px;
-  padding-top: 20px;
+  /*padding-top: 20px;*/
   padding-bottom:20px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
-
+.tempdiv {
+  /*background-color: #fff;*/
+}
+.progress {
+  margin-top: -5px;
+}
+.currentLessonBox {
+  /*background-color: #aaa;*/
+  border-radius: 5px;
+  background-color: #fff;
+  border: 8px solid #898989;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.lastLessonBox {
+  /*background-color: #aaa;*/
+  border-radius: 5px;
+  background-color: #fff;
+  border: 8px solid #898989;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.lessonBox:hover {
+  border: 8px solid #4A4A4A;
+}
 /*----------------------------------------------------------*/
 /*                       Ace Style Classes                  */
 /*----------------------------------------------------------*/
 
 .ace_editor { height: 200px; }
+
+
+/*----------------------------------------------------------*/
+/*                       test                               */
+/*----------------------------------------------------------*/
+.tutorial-list > li {
+
+}
