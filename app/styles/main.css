@@ -463,6 +463,20 @@ body {
   padding-top: 10px;
 }
 
+.element-correct{  
+  padding:5px;
+  border-color: rgba(0, 255, 0, 0.3);
+  border-width: 15px;
+  border-style: outset;
+
+}
+.element-question{
+  padding:5px;
+  border-color: rgba(255, 255, 0, 0.3);
+  border-width: 15px;
+  border-style: outset;
+}
+
 img{
   border-radius: 6px;
 }
