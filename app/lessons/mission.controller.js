@@ -227,7 +227,8 @@ function resetGate() {
         $('.aceCode').remove();
         console.log('testcase', testCase);
 
-        $localStorage.codeObj = '';
+        ////seth and robby commented this out...seems to be ok without
+        //$localStorage.codeObj = '';
 
         $timeout(function(){
           missionCtrl.codeResult = temp;
@@ -278,8 +279,14 @@ function resetGate() {
                                               logPeriod: brainData.logPeriod,
                                               learningRate: brainData.learningRate,
                                               momentum: brainData.momentum,
-                                              binaryThresh: brainData.binaryThresh
+                                              binaryThresh: brainData.binaryThresh,
+                                              input: input || null
                                              });
+      }
+      //
+      if (!editorHasBeenChecked) {
+        openGate();
+        editorHasBeenChecked = true;
       }
     };
 

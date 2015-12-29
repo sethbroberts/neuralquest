@@ -68,7 +68,7 @@ var nqConsole = function() {
       document.getElementById('result').innerHTML = '';
       // console.log('aceCode script block', document.getElementsByClassName('aceCode'));
       $('.aceCode').remove();
-      
+
       $timeout(function(){
         appendToScript($localStorage.codeObj);
         appendToScript(testCases());

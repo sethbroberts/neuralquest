@@ -61,6 +61,7 @@
           </div>
 
           <div ng-switch-when="code-editor">
+            <pre ng-show="element.description">{{ element.description }}</pre>
             {{ missionCtrl.initEditor(element.prompt) }}
             <div id="code-editor" class="codeeditorbox"></div>
             <div id="result" ng-show="missionCtrl.codeResult">
