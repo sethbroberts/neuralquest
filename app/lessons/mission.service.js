@@ -48,10 +48,17 @@
         var apiRoot = 'https://neuralquest.herokuapp.com';
 
         $.post(apiRoot + path, data, function( results ) {
+          var toDisplay;
           console.log(JSON.stringify(results));
-          var errorAndIterations = results.result.answer[0];
-          console.log('errorAndIterations is ', errorAndIterations);
-          var toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
+          console.log(path);
+          if(path === '/api/trainRun') {
+            var errorAndIterations = results.result.answer[0];
+            console.log('errorAndIterations is ', errorAndIterations);
+            toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
+          } else if (path === '/api/runSimpleMNIST') {
+            console.log(results);
+            toDisplay = results.result.predictedValue;
+          }
           aceService.nqConsole.log(toDisplay);
         })
         .fail(function() {

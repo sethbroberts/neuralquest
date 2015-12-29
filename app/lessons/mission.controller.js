@@ -227,7 +227,8 @@ function resetGate() {
         $('.aceCode').remove();
         console.log('testcase', testCase);
 
-        $localStorage.codeObj = '';
+        ////seth and robby commented this out...seems to be ok without
+        //$localStorage.codeObj = '';
 
         $timeout(function(){
           missionCtrl.codeResult = temp;
