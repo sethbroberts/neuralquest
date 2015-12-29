@@ -57,7 +57,11 @@
             toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
           } else if (path === '/api/runSimpleMNIST') {
             console.log(results);
-            toDisplay = results.result.predictedValue;
+            var answerArr = results.result.predictedValue;
+            toDisplay = '[\n  ' + answerArr.join(',\n  ') + '\n]';
+            if(results.result.log !== 'OK') {
+              toDisplay = results.result.log;
+            }
           }
           aceService.nqConsole.log(toDisplay);
         })

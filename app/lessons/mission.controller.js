@@ -279,8 +279,14 @@ function resetGate() {
                                               logPeriod: brainData.logPeriod,
                                               learningRate: brainData.learningRate,
                                               momentum: brainData.momentum,
-                                              binaryThresh: brainData.binaryThresh
+                                              binaryThresh: brainData.binaryThresh,
+                                              input: input || null
                                              });
+      }
+      //
+      if (!editorHasBeenChecked) {
+        openGate();
+        editorHasBeenChecked = true;
       }
     };
 
