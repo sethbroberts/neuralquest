@@ -32,10 +32,10 @@
           </div>
 
           <div ng-switch-when="code" class="element-code">
-            <nq-prism class="language-javascript"> {{ element.content }}</nq-prism>
+            <nq-prism class="language-javascript"> {{ element.content }} </nq-prism>
           </div>
 
-          <div ng-switch-when="question" class="element-question">
+          <div ng-switch-when="question" ng-class="{'element-question': (element.answer.correct !== answerResponse), 'element-correct': (element.answer.correct === answerResponse)}">
 
             <div>
               <form name="form" class="css-form" novalidate>
