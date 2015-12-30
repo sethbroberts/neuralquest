@@ -52,9 +52,13 @@
           console.log(JSON.stringify(results));
           console.log(path);
           if(path === '/api/trainRun') {
-            var errorAndIterations = results.result.answer[0];
-            console.log('errorAndIterations is ', errorAndIterations);
-            toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
+            try {
+              var errorAndIterations = results.result.answer[0];
+              console.log('errorAndIterations is ', errorAndIterations);
+              toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
+            } catch (err) {
+              toDisplay = 'Uh oh, something went wrong...check your inputs carefully and try again!';
+            }
           } else if (path === '/api/runSimpleMNIST') {
             console.log(results);
             var answerArr = results.result.predictedValue;
@@ -63,11 +67,15 @@
               toDisplay = results.result.log;
             }
           } else if (path === '/api/trainRunSimpleMNIST') {
-            var errorAndIterations = results.result.answer[0];
-            var answerArr = results.result.answer[1];
-            console.log('errorAndIterations is ', errorAndIterations);
-            toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
-            toDisplay = toDisplay + '\n[\n  ' + answerArr.join(',\n  ') + '\n]';
+            try {
+              var errorAndIterations = results.result.answer[0];
+              var answerArr = results.result.answer[1];
+              console.log('errorAndIterations is ', errorAndIterations);
+              toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
+              toDisplay = toDisplay + '\n[\n  ' + answerArr.join(',\n  ') + '\n]';
+            } catch (err) {
+              toDisplay = 'Uh oh, something went wrong...check your inputs carefully and try again!';
+            }
           }
           aceService.nqConsole.log(toDisplay);
         })
