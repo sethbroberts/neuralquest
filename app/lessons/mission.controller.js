@@ -90,6 +90,7 @@ function resetGate() {
     }
 
     function saveElement(currentSeqNum) {
+      setNextShuffle(currentSeqNum);
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
       var currentUser = $firebaseObject(refWrite);
       var maxSeq;
@@ -103,13 +104,13 @@ function resetGate() {
       } else {
         currentUser.$loaded().then(function() {
           maxSeq = currentUser.maxSequence || 0;
-          if(currentSeqNum > maxSeq){
-            maxSeq = currentSeqNum;
+          if(missionCtrl.nextSequence > maxSeq){
+            maxSeq = missionCtrl.nextSequence;
           }
           // console.log('maxSeq',maxSeq);
           // console.log('currentSeqNum',currentSeqNum);
           refWrite.update({
-            currentSequence: currentSeqNum,
+            currentSequence: missionCtrl.nextSequence,
             maxSequence: maxSeq
           });
         });
@@ -127,7 +128,7 @@ function resetGate() {
       }
       if(missionCtrl.sequence <= lastEleKey){
         console.log('setting next shuffle');
-        setNextShuffle(missionCtrl.sequence);  
+        setNextShuffle(missionCtrl.sequence);
       }
     };
 
@@ -137,6 +138,7 @@ function resetGate() {
         var element = snapshot.val();
         for (var seq in element) {
           missionCtrl.nextShuffle = element[seq].shuffle;
+          missionCtrl.nextSequence = element[seq].sequence;
         }
       });
     };
