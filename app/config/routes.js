@@ -5,7 +5,7 @@ angular
     .module('neuralquestApp')
     .config(routes);
 
-    function routes ($stateProvider, $urlRouterProvider) {
+    function routes ($stateProvider, $urlRouterProvider, $locationProvider) {
       $stateProvider
         .state('signup', {
           url: '/signup',
@@ -179,5 +179,6 @@ angular
           templateUrl: 'acetest/acetest.html'
         })
       $urlRouterProvider.otherwise('/accordion');
+      $locationProvider.html5Mode(true);
     };
 })();
