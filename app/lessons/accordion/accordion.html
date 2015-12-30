@@ -82,9 +82,16 @@
             
           <div class="accordion" ng-repeat="(course, shuffles) in courses">
             <uib-accordion-group heading="{{course}}" is-open="true">
-              <div ng-repeat="(shuffle, ele) in shuffles">
-                <div ng-click="accordionCtrl.updateUserPosition(shuffle)" ui-sref="mission({ courseName: shuffle })" class="accordionShuffleBox">
-                  {{$index+1}}. <a>{{shuffle}}</a>
+              <div ng-repeat="(shuffle, seq) in shuffles">
+                <div class="row">
+                  <div class="col-md-7 col-sm-7 col-xs-8">
+                    <div ng-click="accordionCtrl.updateUserPosition(shuffle)" ui-sref="mission({ courseName: shuffle })" class="accordionShuffleBox">
+                      {{$index+1}}. <a>{{shuffle}}</a>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-md-offset-3 col-sm-3 col-sm-offset-2 col-xs-4">
+                    <div style="display: inline" class="text-right fa fa-check-circle" ng-show="accordionCtrl.shuffleCompleted(seq, shuffle)"> studied</div>
+                  </div>
                 </div>
               </div>
               <br/>
