@@ -10,12 +10,47 @@
 
     <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-7">
+      <div class="col-md-7 profileWrapper">
         <img class="profilePageImage" src="{{profileCtrl.profile.profileImageURL}}">
-        <p ng-hide="profileCtrl.pwdUser">Name: {{profileCtrl.profile.displayName}}</p>
-        <p ng-show="profileCtrl.pwdUser">Email Address: {{profileCtrl.profile.emailAddress}}</p>
-        <div ng-show="profileCtrl.isAdmin()" class="checkbox">
-          <label><input ng-click="profileCtrl.changeBuildMode();" ng-model="profileCtrl.buildMode" type="checkbox" value="" ng-checked="profileCtrl.buildMode">Enable Build Mode</label>
+        <div ng-hide="profileCtrl.editMode">
+          <div ng-hide="profileCtrl.pwdUser">
+            <h4>Name</h4><p>{{profileCtrl.profile.displayName}}</p>
+          </div>
+          <div ng-show="profileCtrl.pwdUser">
+            <h4>Email Address</h4><p>{{profileCtrl.profile.emailAddress}}</p>  
+          </div>
+          <h4>Bio</h4><p>{{profileCtrl.profile.bio}}</p>
+          
+          <h4>Location</h4><p>{{profileCtrl.profile.location}}</p>
+          
+          <h4>Website</h4><p>{{profileCtrl.profile.website}}</p>
+          
+          <h4>Github</h4><p>{{profileCtrl.profile.github}}</p>
+          
+          <h4>LinkedIn</h4><p>{{profileCtrl.profile.linkedin}}</p>
+          <div ng-show="profileCtrl.isAdmin()" class="checkbox">
+            <label><input ng-click="profileCtrl.changeBuildMode();" ng-model="profileCtrl.buildMode" type="checkbox" value="" ng-checked="profileCtrl.buildMode">Enable Build Mode</label>
+          </div>
+        </div>
+        <br />
+        <div class="btn btn-default" ng-click="profileCtrl.editProfile()" ng-hide="profileCtrl.editMode">Edit Profile</div>
+        <div ng-show="profileCtrl.isEditMode()">
+          <h4>Bio</h4>
+          <textarea rows="4" class="form-control" ng-model="profileCtrl.profile.bio"></textarea>
+          <br />
+          <h4>Location</h4>
+          <input class="form-control" type="text" ng-model="profileCtrl.profile.location">
+          <br />
+          <h4>Website</h4>
+          <input class="form-control" type="text" ng-model="profileCtrl.profile.website">
+          <br />
+          <h4>Github</h4>
+          <input class="form-control" type="text" ng-model="profileCtrl.profile.github">
+          <br />
+          <h4>LinkedIn</h4>
+          <input class="form-control" type="text" ng-model="profileCtrl.profile.linkedin">
+          <br />
+          <div class="btn btn-primary" ng-click="profileCtrl.updateProfile()">Save Changes</div>
         </div>
         <form ng-submit="profileCtrl.resetEle();">
           <br />
