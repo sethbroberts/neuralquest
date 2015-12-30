@@ -6,7 +6,7 @@
     .controller('AccordionCtrl', AccordionCtrl);
 
   
-  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData, Users, Auth, Missions) {
+  function AccordionCtrl(FirebaseUrl, $firebaseObject, $firebaseArray, accordionData, Users, Auth, Missions, $timeout, $scope) {
     var accordionCtrl = this;
     var getLessons = getLessons;
     var ref = new Firebase(FirebaseUrl + '/NNFlat');
@@ -32,26 +32,27 @@
       // if(Users.getProfile(Auth.$getAuth())){
         accordionCtrl.currentUser = Users.getProfile(Auth.$getAuth().uid);  
       // }
-      
-      accordionCtrl.currentUser.$loaded().then(function() {
+      $timeout(function(){
+        accordionCtrl.currentUser.$loaded().then(function() {
         var currSeq = accordionCtrl.currentUser.currentSequence;
         var maxSeq = accordionCtrl.currentUser.maxSequence;
         // console.log('maxseq',maxSeq);
         ref.orderByChild('sequence')
-           .equalTo(currSeq)
-           .on('value', function(snapshot) {
-             var data = snapshot.val();
-             accordionCtrl.currentUser.currentLesson = data[currSeq].course;
-             accordionCtrl.currentUser.currentShuffle = data[currSeq].shuffle;
-           });
+          .equalTo(currSeq)
+          .on('value', function(snapshot) {
+            var data = snapshot.val();
+            accordionCtrl.currentUser.currentLesson = data[currSeq].course;
+            accordionCtrl.currentUser.currentShuffle = data[currSeq].shuffle; 
+          });
         ref.orderByChild('sequence')
-           .equalTo(maxSeq)
-           .on('value', function(snapshot) {
-             var data = snapshot.val();
-             accordionCtrl.currentUser.maxLesson = data[maxSeq].course;
-             accordionCtrl.currentUser.maxShuffle = data[maxSeq].shuffle;
-           });
-      });
+          .equalTo(maxSeq)
+          .on('value', function(snapshot) {
+            var data = snapshot.val();
+            accordionCtrl.currentUser.maxLesson = data[maxSeq].course;
+            accordionCtrl.currentUser.maxShuffle = data[maxSeq].shuffle;
+          });
+        });  
+      }, 500);
 
       getCurrentUserProgress(accordionCtrl.currentUser);
     };
