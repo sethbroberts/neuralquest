@@ -38,7 +38,7 @@ function resetGate() {
     var editorInitialized = false;
     var questionHasBeenChecked = false;
     var editorHasBeenChecked = false;
-    
+
     missionCtrl.testUrl = 'https://www.youtube.com/watch?v=t6elbnKVxpo&list=RD6AcDDc3JUJU&index=27';
     missionCtrl.lastElement = lastEle;
     console.log('lastEl',missionCtrl.lastElement);
@@ -285,11 +285,10 @@ function resetGate() {
                                               binaryThresh: brainData.binaryThresh,
                                               input: input || null
                                              });
-      }
-      //
       if (!editorHasBeenChecked) {
         openGate();
         editorHasBeenChecked = true;
+      }
       }
     };
 
