@@ -45,32 +45,29 @@ $(window).scroll(function() {
   var techstackPos = $('#techstack').offset();
   var st = $(this).scrollTop();
   var page = $('html, body');
+  var isHomepage = Boolean($('.homepagewrapper').length);
+
   // debugger;
-  if (st > lastScrollTop){
-    // downscroll code
-    if (st > 10 && st < 100) {
-      //move to teaminfo div
-      page.stop();
-      page.animate({
-        scrollTop: teaminfoPos.top - 100
-      },500);
+  if(isHomepage){
+    if (st > lastScrollTop){
+      // downscroll code
+      if (st > 10 && st < 100) {
+        //move to teaminfo div
+        page.stop();
+        page.animate({
+          scrollTop: teaminfoPos.top - 100
+        },500);
+      } 
+      if(st > teaminfoPos.top - 90 && st < teaminfoPos.top){
+        //move to techstack div
+        page.stop();
+        page.animate({
+          scrollTop: techstackPos.top - 100
+        },500);
+      }
     } 
-    if(st > teaminfoPos.top - 90 && st < teaminfoPos.top){
-      //move to teaminfo div
-      page.stop();
-      page.animate({
-        scrollTop: techstackPos.top - 100
-      },500);
-    }
-  } 
-  // else {
-  //   // upscroll code
-  //   //move to top
-  //   page.stop();
-  //   page.animate({
-  //     scrollTop: 0
-  //   },500);
-  // }
+  }
+  
   lastScrollTop = st;
 });
 
