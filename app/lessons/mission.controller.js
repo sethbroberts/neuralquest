@@ -240,14 +240,14 @@ function resetGate() {
       }
       if (handleMethod === 'API') {
         $('.aceCode').remove();
-        appendToScript('var require = function(){ return {NeuralNetwork: function(){ return { train: function(){} } } } }; \
+        appendToScript('var require = function(){ return {NeuralNetwork: function(){ return { train: function(){}, runInput: function(){} } } } }; \
                         var data = data || null');
         appendToScript(temp);
         // console.log("temp is: ", temp)
         missionCtrl.codeResult = true;
 
         // Without this line then brainData will always be undefined!!
-        var brainData = window.brainData;
+        var brainData = window.trainingOptions;
 
         // Validate user input and/or provide null (which the server will deal with as default vals)
         if (brainData) {

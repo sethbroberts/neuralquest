@@ -62,6 +62,12 @@
             if(results.result.log !== 'OK') {
               toDisplay = results.result.log;
             }
+          } else if (path === '/api/trainRunSimpleMNIST') {
+            var errorAndIterations = results.result.answer[0];
+            var answerArr = results.result.answer[1];
+            console.log('errorAndIterations is ', errorAndIterations);
+            toDisplay = 'Error: ' + errorAndIterations.error.toFixed(7) + ' Iterations: ' + errorAndIterations.iterations;
+            toDisplay = toDisplay + '\n[\n  ' + answerArr.join(',\n  ') + '\n]';
           }
           aceService.nqConsole.log(toDisplay);
         })
