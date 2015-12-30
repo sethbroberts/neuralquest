@@ -179,6 +179,6 @@ angular
           templateUrl: 'acetest/acetest.html'
         })
       $urlRouterProvider.otherwise('/accordion');
-      $locationProvider.html5Mode(true);
+
     };
 })();
