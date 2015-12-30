@@ -243,7 +243,8 @@ function resetGate() {
       if (handleMethod === 'API') {
         $('.aceCode').remove();
         appendToScript('var require = function(){ return {NeuralNetwork: function(){ return { train: function(){}, runInput: function(){} } } } }; \
-                        var data = data || null');
+                        var data = data || null; \
+                        var input = input || null');
         appendToScript(temp);
         // console.log("temp is: ", temp)
         missionCtrl.codeResult = true;
