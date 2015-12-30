@@ -11,6 +11,7 @@
     var getLessons = getLessons;
     var ref = new Firebase(FirebaseUrl + '/NNFlat');
     var userRef = new Firebase(FirebaseUrl + '/users');
+    var currentUserRef = new Firebase(FirebaseUrl + 'users/'+Auth.$getAuth().uid);
 
     accordionCtrl.oneAtATime = true;
 
@@ -20,7 +21,7 @@
     accordionCtrl.openFirstOne = openFirstOne;
     accordionCtrl.updateUserPosition = updateUserPosition;
     accordionCtrl.makeLocalObject = makeLocalObject;
-
+    accordionCtrl.shuffleCompleted = shuffleCompleted;
     /*======================================
     =            IMPLEMENTATION            =
     ======================================*/
@@ -100,9 +101,12 @@
           var element = snapshot.val();
           for (var key in element) {
             var currentSeq = parseInt(key);
+            console.log('currentSeq',currentSeq);
+            console.log('maxSeq', maxSeq);
             if(currentSeq > maxSeq){
               maxSeq = currentSeq;    
             }
+            
           }
           refWrite.update({
             currentSequence: currentSeq,
@@ -115,13 +119,15 @@
     };
 
     function makeLocalObject(allElements) {
+      // console.log(allElements);
       var result = {}
       for(var numberKey in allElements) {
         var element = allElements[numberKey];
         var step = element['step'];
         var course = element['course'];
         var shuffle = element['shuffle'];
-
+        var sequence = element['sequence'];
+        // console.log(sequence);
         if(!result[step]) {
           result[step] = {}
         }
@@ -131,9 +137,11 @@
         if(!result[step][course][shuffle]) {
           result[step][course][shuffle] = {}
         }
-        result[step][course][shuffle][element] = true; 
+        // result[step][course][shuffle][element] = sequence; 
+        result[step][course][shuffle] = sequence; 
         
       }
+      // console.log('result', result);
       return result;
     };
 
@@ -143,6 +151,12 @@
       } else {
         return true;
       }
+    }
+    function shuffleCompleted(seqNum, shuffle) {
+      // console.log('seqNum', seqNum);
+      // console.log('shuffle', shuffle);
+      // console.log('maxseq2', accordionCtrl.currentUser.maxSequence)
+      return seqNum <= accordionCtrl.currentUser.maxSequence;
     }
   };
 

@@ -89,28 +89,30 @@ function resetGate() {
       }
     }
 
-    function saveElement(data) {
+    function saveElement(currentSeqNum) {
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
-      // console.log('you are here', data);
-      // console.log('you are here', lastEle[data].sequence);
+      var currentUser = $firebaseObject(refWrite);
+      var maxSeq;
       //if last page show complete template.
       var lastEleKey = Object.keys(lastEle);
-      if( (data) == lastEleKey ){
-        console.log('you are here!!!!!');
+      if( (currentSeqNum) == lastEleKey ){
+        // console.log('you are here!!!!!');
         $timeout(function(){
           $state.go('missionComplete');
         },100)
       } else {
-        // console.log("data arg is: ", data);
-        data = data + 1;
-        ref.orderByChild('sequence').startAt(data).limitToFirst(1).on('value', function(snapshot) {
-          var element = snapshot.val();
-          for (var seq in element) {
-            refWrite.update({ currentSequence: element[seq].sequence });
-            console.log('nextSeq is now: ', element[seq].sequence);
+        currentUser.$loaded().then(function() {
+          maxSeq = currentUser.maxSequence || 0;
+          if(currentSeqNum > maxSeq){
+            maxSeq = currentSeqNum;
           }
+          // console.log('maxSeq',maxSeq);
+          // console.log('currentSeqNum',currentSeqNum);
+          refWrite.update({
+            currentSequence: currentSeqNum,
+            maxSequence: maxSeq
+          });
         });
-
         resetGate();
       }
     };
