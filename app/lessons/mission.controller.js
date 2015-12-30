@@ -282,11 +282,10 @@ function resetGate() {
                                               binaryThresh: brainData.binaryThresh,
                                               input: input || null
                                              });
-      }
-      //
       if (!editorHasBeenChecked) {
         openGate();
         editorHasBeenChecked = true;
+      }
       }
     };
 
