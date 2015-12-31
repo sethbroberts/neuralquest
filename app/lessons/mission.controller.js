@@ -28,7 +28,8 @@ function resetGate() {
   function MissionCtrl ($firebaseArray, FirebaseUrl, 
     $firebaseObject, Missions, missionData, 
     $scope, Build, Users, auth, lastEle,
-    $localStorage, $timeout, $state, $sce
+    $localStorage, $timeout, $state, $sce,
+    $uibModal
     ) {
     
     var missionCtrl = this;
@@ -38,6 +39,7 @@ function resetGate() {
     var editorInitialized = false;
     var questionHasBeenChecked = false;
     var editorHasBeenChecked = false;
+    var currentStep = 'Beginner';
 
     missionCtrl.testUrl = 'https://www.youtube.com/watch?v=t6elbnKVxpo&list=RD6AcDDc3JUJU&index=27';
     missionCtrl.lastElement = lastEle;
@@ -58,6 +60,7 @@ function resetGate() {
     missionCtrl.multipleChoiceChecker = multipleChoiceChecker;
     resetGate();
     checkGateNeededEle();
+    missionCtrl.modal = modal;
 
     
     // init();
@@ -81,6 +84,13 @@ function resetGate() {
     /*=============================================
     =            METHOD IMPLEMENTATION            =
     =============================================*/
+    function modal (){
+      $uibModal.open({
+      template:'<div class="loginformbox"><h1>Congratulations!</h1><h3>You\'ve completed this step</h3><br/></div>',
+      controller: function(){}
+      });
+    };
+
     function initEditor(prompt) {
       if(!editorInitialized){
         initCodeEditor(prompt);
@@ -89,8 +99,8 @@ function resetGate() {
       }
     }
 
-    function saveElement(currentSeqNum) {
-      setNextShuffle(currentSeqNum);
+    function saveElement(currentSeqNum, step) {
+      setNextShuffle(currentSeqNum, step);
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
       var currentUser = $firebaseObject(refWrite);
       var maxSeq;
@@ -132,14 +142,21 @@ function resetGate() {
       }
     };
 
-    function setNextShuffle(sequence) {
+    function setNextShuffle(sequence, step) {
       var nextSeq = sequence + 1;
       ref.orderByChild('sequence').startAt(nextSeq).limitToFirst(1).on('value', function(snapshot) {
         var element = snapshot.val();
         for (var seq in element) {
           missionCtrl.nextShuffle = element[seq].shuffle;
           missionCtrl.nextSequence = element[seq].sequence;
-        }
+          currentStep = element[seq].step;
+          console.log('step ', step)
+          console.log('currentStep', currentStep)
+        };
+
+        if(step !== currentStep && step !== undefined){
+          modal();
+        };
       });
     };
 
