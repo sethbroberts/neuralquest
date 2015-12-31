@@ -11,7 +11,7 @@
     .module('neuralquestApp')
     .factory('Missions', Missions);
 
-    function Missions($firebaseArray, $firebaseObject, FirebaseUrl, $q){
+    function Missions($firebaseArray, $firebaseObject, FirebaseUrl, $q, toaster){
       var ref = new Firebase(FirebaseUrl + '/NNFlat');
 
       var Mission = {};
@@ -47,6 +47,8 @@
         var devUrl = 'http://localhost:1337';
         var apiRoot = 'https://neuralquest.herokuapp.com';
 
+        toaster.pop('wait', 'Training the neural network!', '', 60000);
+
         $.post(apiRoot + path, data, function( results ) {
           var toDisplay;
           console.log(JSON.stringify(results));
@@ -77,6 +79,7 @@
               toDisplay = 'Uh oh, something went wrong...check your inputs carefully and try again!';
             }
           }
+          toaster.clear();
           aceService.nqConsole.log(toDisplay);
         })
         .fail(function() {
