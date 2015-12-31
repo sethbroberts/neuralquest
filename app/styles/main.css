@@ -517,12 +517,11 @@ img{
 }
 
 .element-video { 
+  display: block;
+  margin: 20px auto;
   max-width: 600px;
-  margin: 20px 0;
 }
-.element-video iframe {
-  
-}
+
 .welcomebox {
   background-color: #E9E9E9;
   /*background-color: #393939;*/

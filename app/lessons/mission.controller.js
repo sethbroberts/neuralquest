@@ -41,7 +41,6 @@ function resetGate() {
     var editorHasBeenChecked = false;
     var currentStep = 'Beginner';
 
-    missionCtrl.testUrl = 'https://www.youtube.com/watch?v=t6elbnKVxpo&list=RD6AcDDc3JUJU&index=27';
     missionCtrl.lastElement = lastEle;
     console.log('lastEl',missionCtrl.lastElement);
     processSnapshot(missionData);
@@ -100,25 +99,28 @@ function resetGate() {
     }
 
     function saveElement(currentSeqNum, step) {
-      setNextShuffle(currentSeqNum, step);
       var refWrite = new Firebase(FirebaseUrl + '/users/' + authData.uid + '/');
       var currentUser = $firebaseObject(refWrite);
       var maxSeq;
-      //if last page show complete template.
+      // If last page show complete template.
       var lastEleKey = Object.keys(lastEle);
       if( (currentSeqNum) == lastEleKey ){
-        // console.log('you are here!!!!!');
+        setNextShuffle(currentSeqNum, step, true);
+        // Turn the last element sequence into a number for use below:
+        maxSeq = +lastEleKey[0];
+        refWrite.update({
+          maxSequence: maxSeq
+        });
         $timeout(function(){
           $state.go('missionComplete');
         },100)
       } else {
+        setNextShuffle(currentSeqNum, step, false);
         currentUser.$loaded().then(function() {
           maxSeq = currentUser.maxSequence || 0;
           if(missionCtrl.nextSequence > maxSeq){
             maxSeq = missionCtrl.nextSequence;
           }
-          // console.log('maxSeq',maxSeq);
-          // console.log('currentSeqNum',currentSeqNum);
           refWrite.update({
             currentSequence: missionCtrl.nextSequence,
             maxSequence: maxSeq
@@ -142,7 +144,7 @@ function resetGate() {
       }
     };
 
-    function setNextShuffle(sequence, step) {
+    function setNextShuffle(sequence, step, isFinal) {
       var nextSeq = sequence + 1;
       ref.orderByChild('sequence').startAt(nextSeq).limitToFirst(1).on('value', function(snapshot) {
         var element = snapshot.val();
@@ -154,7 +156,7 @@ function resetGate() {
           console.log('currentStep', currentStep)
         };
 
-        if(step !== currentStep && step !== undefined){
+        if(!isFinal && step !== currentStep && step !== undefined){
           modal();
         };
       });
