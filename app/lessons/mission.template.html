@@ -26,7 +26,7 @@
           </div>
 
           <div ng-switch-when="video" class="element-video">
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive embed-responsive-16by9 video-inner">
             <nq-youtube class="embed-responsive-item" nq-videoid="element.url"></nq-youtube>
             </div>
           </div>
@@ -66,6 +66,7 @@
             <div id="code-editor" class="codeeditorbox"></div>
             <div id="result" ng-show="missionCtrl.codeResult">
             </div>
+            <toaster-container toaster-options="{'position-class':'toast-bottom-full-width'}"></toaster-container>
             <button class="btn btn-primary btn-sm" ng-click="missionCtrl.run(element.testCase, element.handling, element.route)">Run</button>
             <button class="btn btn-warning btn-sm" ng-click="missionCtrl.reset(element.prompt)">Reset</button>
             <button class="btn btn-danger btn-sm" ng-click="missionCtrl.showCodeAnswer(element.answer)">Show Answer</button>
