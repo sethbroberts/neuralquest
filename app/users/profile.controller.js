@@ -14,15 +14,20 @@
       var profileCtrl = this;
 
       profileCtrl.profile = profile;
+      console.log('profile1',profileCtrl.profile);
       profileCtrl.updateProfile = updateProfile;
       profileCtrl.isPasswordUser = isPasswordUser;
-      profileCtrl.profile = auth;
+      // profileCtrl.profile = auth;
+      // console.log('profile2',profileCtrl.profile);
       profileCtrl.resetPwdToggle = false;
+      profileCtrl.editMode = false;
       profileCtrl.changePwdIfMatch = changePwdIfMatch;
       profileCtrl.resetEle = resetEle;
       profileCtrl.isAdmin = isAdmin;
-      profileCtrl.changeBuildMode = changeBuildMode
+      profileCtrl.changeBuildMode = changeBuildMode;
+      profileCtrl.isEditMode = isEditMode;
       profileCtrl.buildMode = Build.getBuildMode();
+      profileCtrl.editProfile = editProfile;
 
       if (auth.google) {
         profileCtrl.pwdUser = false;
@@ -130,18 +135,24 @@
       function updateProfile() {
         if(auth.google){
           profileCtrl.profile.$save();
-          $state.go('accordion');
+          profileCtrl.editMode = false;
         }
         if(auth.facebook){
           profileCtrl.profile.$save();
-          $state.go('accordion');
+          profileCtrl.editMode = false;
         }
         if(auth.password){
-          profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
+          console.log('profile updated');
           profileCtrl.profile.$save();
-          //todo: change this
-          $state.go('accordion');
+          profileCtrl.editMode = false;
         }
+      }
+
+      function isEditMode() {
+        return profileCtrl.editMode;
+      }
+      function editProfile() {
+        profileCtrl.editMode = true;
       }
 
       function isAdmin() {
