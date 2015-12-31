@@ -45,9 +45,9 @@
           <p class="text-center" ng-show="accordionCtrl.currentUser.currentLesson">or choose a specific lesson from below.</p>
         </div>
         <div ng-hide="accordionCtrl.currentUser.maxLesson">
-          <h3 class="text-center" >
-            Start learning neural network lesson.
-          </h3>
+          <h2 class="text-center" >
+            Start learning!
+          </h2>
           <br />
           <button ui-sref="mission({ courseName: accordionCtrl.currentUser.currentShuffle })" type="button" class="btn btn-primary center-block">
               Start
@@ -76,8 +76,7 @@
         <!-- <span>Summary: {{step.summary}}</span> -->
       </div>
       <div class="accordionCoursesBox">
-        <div class="accordionCoursesText">Available Courses</div>
-
+        <div class="accordionCoursesText">Available Modules</div>
         <uib-accordion close-others="false">
             
           <div class="accordion" ng-repeat="(course, shuffles) in courses">
