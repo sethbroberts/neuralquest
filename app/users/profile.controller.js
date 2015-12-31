@@ -143,6 +143,9 @@
         }
         if(auth.password){
           console.log('profile updated');
+          if(!profileCtrl.profile.displayName){
+            profileCtrl.profile.displayName = null;
+          }
           profileCtrl.profile.$save();
           profileCtrl.editMode = false;
         }
