@@ -23,12 +23,12 @@
             <div ng-show="buildCtrl.editMode === 'build'" class="form-group">
               <label for="sel1">Select Element Type</label>
               <select ng-model="buildCtrl.build.type" class="form-control" id="sel1">
-                <option>text</option>
-                <option>image</option>
-                <option>video</option>
-                <option>code</option>
-                <option>code-editor</option>
-                <option>question</option>
+                <option value="text">Text</option>
+                <option value="image">Image</option>
+                <option value="image">Video</option>
+                <option value="code">Code</option>
+                <option value="code-editor">Code-editor</option>
+                <option value="question">Question</option>
               </select>
             </div>
             <div ng-show="buildCtrl.editMode === 'update'" class="form-group">
@@ -50,7 +50,7 @@
               <label>Shuffle</label>
               <input type="text" class="form-control" placeholder="shuffle" ng-model="buildCtrl.build.shuffle"  required>
             </div>
-            <div class="form-group" ng-show="buildCtrl.build.type === 'image' || buildCtrl.build.type === 'video'">
+            <div class="form-group" ng-show="(buildCtrl.build.type === 'image' || buildCtrl.build.type === 'video')">
               <label>URL</label>
               <input type="text" class="form-control" placeholder="url" ng-model="buildCtrl.build.url">
             </div>
@@ -61,8 +61,8 @@
             <div class="form-group" ng-show="(buildCtrl.build.type === 'code-editor')">
               <label>Code-editor handling type</label>
               <select class="form-control" ng-model="buildCtrl.build.handling">
-                <option>evaluate</option>
-                <option>API</option>
+                <option value="evaluate">evaluate</option>
+                <option value="API">API</option>
               </select>
             </div>
 
