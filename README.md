@@ -1,5 +1,5 @@
 # networkFlambe
-A teaching platform that caters to educating people about neural networks.
+A teaching platform that caters to educating people about neural networks. 
 
 ## Team
 
